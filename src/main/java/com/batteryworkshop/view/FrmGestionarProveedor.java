@@ -4,11 +4,10 @@
  */
 package com.batteryworkshop.view;
 
-import com.batteryworkshop.view.modal.FrmGestionarPermiso;
-import com.batteryworkshop.controller.RolController;
-import com.batteryworkshop.model.Rol;
+import com.batteryworkshop.controller.ProveedorController;
+import com.batteryworkshop.model.Proveedor;
 import com.batteryworkshop.properties.RenderTable;
-import com.batteryworkshop.view.modal.FrmRegistrarRol;
+import com.batteryworkshop.view.modal.FrmRegistrarProveedor;
 import java.awt.Color;
 import java.awt.Image;
 import java.util.List;
@@ -23,51 +22,53 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author JuniorMiguel
  */
-public class FrmGestionarRol extends javax.swing.JInternalFrame {
+public class FrmGestionarProveedor extends javax.swing.JInternalFrame {
 
-    public static RolController rolC = new RolController();
+    public static ProveedorController ProveedorC= new ProveedorController();
 
     /**
-     * Creates new form FrmGestionarRol
+     * Creates new form FrmGestionarProveedor
      */
-    public FrmGestionarRol() {
+    public FrmGestionarProveedor() {
         initComponents();
         listar("");
     }
 
     public static void listar(String texto) {
         //agregar columnas
-        String[] columns = {"#", "Descripcion", "", "", "", ""};
+        String columnas[] = {"#", "Documento", "Razon Social", "Email", "Telefono","Estado","","", ""};
         //me va ha permitir crear una tabla sombra  de cualquier clase y traer mis datos 
         DefaultTableModel modelo = new DefaultTableModel();
-        for (String columnas : columns) {
-            modelo.addColumn(columnas);
+        for (String columns : columnas) {
+            modelo.addColumn(columns);
         }
         //1 creo una lista
 //        List lista;
         //2 traigo los datos de mi lista
-//        Rol rol;
+//        Proveedor rol;
         //3 creo un objeto
 //        Object []  objeto = new Object[6];
 //        //4 agregar las filas
 //        for (int i = 0; i <lista.size(); i++) {
-//            rol=(Rol) lista.get(i);
-//            objeto[0]=rol.getRolId();
+//            rol=(Proveedor) lista.get(i);
+//            objeto[0]=rol.getProveedorId();
 //            objeto[1]=rol.getDescripcion();
 //            modelo.addRow(objeto);
 //        }
 
         List lista;
-        Rol rol;
+        Proveedor cliente;
 
         if (txtBuscar.getText().length() == 0) {
-            lista = rolC.listar();
+            lista = ProveedorC.listar();
 
         } else {
-            lista = rolC.listar(texto);
+            lista = ProveedorC.listar(texto);
         }
+        //lista.forEach((x)->{});funcion lamda
+        
         for (Object obj : lista) {
-            rol = (Rol) obj;
+            cliente = (Proveedor) obj;
 
             ImageIcon iconoModi = new ImageIcon("src/main/java/com/batteryworkshop/image/editar.png");
             Icon btnModificar = new ImageIcon(iconoModi.getImage().getScaledInstance(22, 22, Image.SCALE_DEFAULT));
@@ -85,14 +86,6 @@ public class FrmGestionarRol extends javax.swing.JInternalFrame {
             botonEliminar.setBorder(null);
             botonEliminar.setBackground(new Color(223, 68, 83));
 
-            ImageIcon iconoPerm = new ImageIcon("src/main/resources/img/check.png");
-            Icon btnPermiso = new ImageIcon(iconoPerm.getImage().getScaledInstance(22, 22, Image.SCALE_DEFAULT));
-            JButton botonPermiso = new JButton("", btnPermiso);
-            botonPermiso.setName("btnPermiso");
-            botonPermiso.setToolTipText("Permisos");
-            botonPermiso.setBorder(null);
-            botonPermiso.setBackground(new Color(120, 128, 135));
-
             ImageIcon iconoVer = new ImageIcon("src/main/java/com/batteryworkshop/image/ver.png");
             Icon btnVer = new ImageIcon(iconoVer.getImage().getScaledInstance(22, 22, Image.SCALE_DEFAULT));
             JButton botonVer = new JButton("", btnVer);
@@ -102,11 +95,14 @@ public class FrmGestionarRol extends javax.swing.JInternalFrame {
             botonVer.setBackground(new Color(41, 143, 96));
 
             modelo.addRow(new Object[]{
-                rol.getRolId(),
-                rol.getDescripcion(),
+                cliente.getProveedorId(),
+                cliente.getDocumento(),
+                cliente.getRazonSocial(),
+                cliente.getCorreo() ,
+                cliente.getTelefono(),
+                cliente.isEstado(),
                 botonModificar,
                 botonEliminar,
-                botonPermiso,
                 botonVer
             });
         }
@@ -117,11 +113,14 @@ public class FrmGestionarRol extends javax.swing.JInternalFrame {
         tbListado.getColumnModel().getColumn(0).setMaxWidth(0);
         tbListado.getColumnModel().getColumn(0).setMinWidth(0);
         tbListado.getColumnModel().getColumn(0).setPreferredWidth(0);
-        tbListado.getColumnModel().getColumn(1).setPreferredWidth(480);
-        tbListado.getColumnModel().getColumn(2).setPreferredWidth(30);
-        tbListado.getColumnModel().getColumn(3).setPreferredWidth(30);
-        tbListado.getColumnModel().getColumn(4).setPreferredWidth(30);
-        tbListado.getColumnModel().getColumn(5).setPreferredWidth(30);
+        tbListado.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tbListado.getColumnModel().getColumn(2).setPreferredWidth(220);
+        tbListado.getColumnModel().getColumn(3).setPreferredWidth(175);
+        tbListado.getColumnModel().getColumn(4).setPreferredWidth(80);
+        tbListado.getColumnModel().getColumn(5).setPreferredWidth(50);
+        tbListado.getColumnModel().getColumn(6).setPreferredWidth(30);
+        tbListado.getColumnModel().getColumn(7).setPreferredWidth(30);
+        tbListado.getColumnModel().getColumn(8).setPreferredWidth(30);
         lblTotal.setText("" + tbListado.getRowCount());
     }
 
@@ -145,7 +144,8 @@ public class FrmGestionarRol extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Gestionar Rol");
+        setTitle("Gestionar Proveedor");
+        setToolTipText("");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -193,7 +193,7 @@ public class FrmGestionarRol extends javax.swing.JInternalFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 376, Short.MAX_VALUE)
                         .addComponent(cmdAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -230,7 +230,7 @@ public class FrmGestionarRol extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                     .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -239,7 +239,7 @@ public class FrmGestionarRol extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAgregarActionPerformed
-        FrmMenuPrincipal.centrarVentana(new FrmRegistrarRol());
+        FrmMenuPrincipal.centrarVentana(new FrmRegistrarProveedor());
 
     }//GEN-LAST:event_cmdAgregarActionPerformed
 
@@ -265,18 +265,18 @@ public class FrmGestionarRol extends javax.swing.JInternalFrame {
                 switch (boton.getName()) {
                     case "btnEliminar" -> {
                         if (filas == 0) {//si no elije ninguna fila
-                            JOptionPane.showMessageDialog(null, "Dato Inexistente");
+                            JOptionPane.showMessageDialog(null, "Datos Inexistente");
 //                          
                         } else {
                             String valor = String.valueOf(tbListado.getValueAt(fila, 1));
 
-                            int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar al Rol " + valor + "?", "Confirmar", 2);
+                            int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el Proveedor " + valor + "?", "Confirmar", 2);
                             if (opcion == 0) {
 
                                 try {
-                                    rolC.eliminar(id);
-                                    JOptionPane.showMessageDialog(null, "Rol Eliminado Correctamente");
-//                                    AlertaBien alertaBien = new AlertaBien("Mensaje", "Rol eliminado correctamente!");
+                                    ProveedorC.eliminar(id);
+                                    JOptionPane.showMessageDialog(null, "Proveedor Eliminado Correctamente");
+//                                    AlertaBien alertaBien = new AlertaBien("Mensaje", "Proveedor eliminado correctamente!");
                                     listar("");
                                 } catch (Exception ex) {
 //                                    AlertaError err = new AlertaError("ERROR", ex.getMessage());
@@ -292,27 +292,27 @@ public class FrmGestionarRol extends javax.swing.JInternalFrame {
                     }
                     case "btnModificar" -> {
                         if (filas == 0) {//si no elije ninguna fila
-//                            Alerta alerta = new Alerta("Alerta", "Debe seleccionar un Rol");
-                            JOptionPane.showMessageDialog(null, "Debe Seleccionar Un Rol");
+//                            Alerta alerta = new Alerta("Alerta", "Debe seleccionar un Proveedor");
+                            JOptionPane.showMessageDialog(null, "Debe Seleccionar Un Proveedor");
                         } else {
-                            FrmRegistrarRol.idRol = id;
-                            FrmMenuPrincipal.centrarVentana(new FrmRegistrarRol());
-                            FrmRegistrarRol.cmdGrabar.setText("Modificar");
+//                            FrmRegistrarProveedor.idProveedor = id;
+                            FrmMenuPrincipal.centrarVentana(new FrmRegistrarProveedor());
+                            FrmRegistrarProveedor.cmdGrabar.setText("Modificar");
 
                         }
                     }
                     case "btnPermiso" -> {
-                        FrmGestionarPermiso.idRol = id;
-                        FrmMenuPrincipal.centrarVentana(new FrmGestionarPermiso());
+//                        FrmGestionarPermiso.idProveedor = id;
+//                        FrmMenuPrincipal.centrarVentana(new FrmGestionarPermiso());
                     }
                     case "btnVer" -> {
                         if (filas == 0) {
 //                            Alerta alerta = new Alerta("Alerta", "Debe seleccionar un tipo");
-                            JOptionPane.showMessageDialog(null, "Debe Seleccionar Un Rol");
+                            JOptionPane.showMessageDialog(null, "Debe Seleccionar Un Proveedor");
                         } else {
-                            FrmRegistrarRol.vista = true;
-                            FrmRegistrarRol.idRol = id;
-                            FrmMenuPrincipal.centrarVentana(new FrmRegistrarRol());
+                            FrmRegistrarProveedor.vista = true;
+//                            FrmRegistrarProveedor.idProveedor = id;
+                            FrmMenuPrincipal.centrarVentana(new FrmRegistrarProveedor());
                         }
                     }
                 }

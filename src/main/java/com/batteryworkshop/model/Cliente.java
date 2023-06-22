@@ -11,43 +11,33 @@ import java.time.LocalDate;
  * @author JuniorMiguel
  */
 public class Cliente {
-    private String codigoCliente;
+    private int clienteId;
     private String documento;
     private String nombres;
     private String apellidos;
     private String correo;
     private String telefono;
     private boolean estado;
-    private LocalDate fechaRegistro;
 
     public Cliente() {
     }
 
-    public Cliente(String codigoCliente, String documento, String nombres, String apellidos, String correo, String telefono, boolean estado, LocalDate fechaRegistro) {
-        this.codigoCliente = codigoCliente;
+    public Cliente(int clienteId, String documento, String nombres, String apellidos, String correo, String telefono, boolean estado) {
+        this.clienteId = clienteId;
         this.documento = documento;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.correo = correo;
         this.telefono = telefono;
         this.estado = estado;
-        this.fechaRegistro = fechaRegistro;
     }
 
-    public LocalDate getFechaRegistro() {
-        return fechaRegistro;
+    public int getClienteId() {
+        return clienteId;
     }
 
-    public void setFechaRegistro(LocalDate fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public String getCodigoCliente() {
-        return codigoCliente;
-    }
-
-    public void setCodigoCliente(String codigoCliente) {
-        this.codigoCliente = codigoCliente;
+    public void setClienteId(int clienteId) {
+        this.clienteId = clienteId;
     }
 
     public String getDocumento() {
@@ -97,5 +87,7 @@ public class Cliente {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+  
     
 }

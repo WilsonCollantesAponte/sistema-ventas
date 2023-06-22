@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.batteryworkshop.view;
+
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
 
@@ -19,13 +20,15 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(6);
     }
-      public static void centrarVentana(JInternalFrame frame) {
+
+    public static void centrarVentana(JInternalFrame frame) {
         escritorio.add(frame);
         Dimension dimension = escritorio.getSize();
         Dimension ventana = frame.getSize();
         frame.setLocation((dimension.width - ventana.width) / 2, (dimension.height - ventana.height) / 2);
         frame.show();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,11 +48,15 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         mnuVenta = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         mnuCompra = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         mnuCliente = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
         mnuProveedor = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
         mnuReporte = new javax.swing.JMenu();
         mnuAdmin = new javax.swing.JMenu();
         mnuGestionarRol = new javax.swing.JMenuItem();
@@ -123,6 +130,13 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         mnuVenta.setMinimumSize(new java.awt.Dimension(120, 90));
         mnuVenta.setPreferredSize(new java.awt.Dimension(120, 90));
         mnuVenta.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jMenuItem11.setText("Registrar");
+        mnuVenta.add(jMenuItem11);
+
+        jMenuItem12.setText("Ver Detalle");
+        mnuVenta.add(jMenuItem12);
+
         jMenuBar1.add(mnuVenta);
 
         mnuCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice_50px.png"))); // NOI18N
@@ -148,6 +162,16 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         mnuCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         mnuCliente.setPreferredSize(new java.awt.Dimension(120, 90));
         mnuCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/rol30.png"))); // NOI18N
+        jMenuItem9.setText("Gestionar Cliente");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        mnuCliente.add(jMenuItem9);
+
         jMenuBar1.add(mnuCliente);
 
         mnuProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/supplier_50px.png"))); // NOI18N
@@ -157,6 +181,15 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         mnuProveedor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         mnuProveedor.setPreferredSize(new java.awt.Dimension(120, 90));
         mnuProveedor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jMenuItem10.setText("Gestionar Proveedor");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        mnuProveedor.add(jMenuItem10);
+
         jMenuBar1.add(mnuProveedor);
 
         mnuReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/combo_chart_50px.png"))); // NOI18N
@@ -176,6 +209,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         mnuAdmin.setPreferredSize(new java.awt.Dimension(120, 90));
         mnuAdmin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        mnuGestionarRol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/rol30.png"))); // NOI18N
         mnuGestionarRol.setText("Gestionar Rol");
         mnuGestionarRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,6 +218,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         });
         mnuAdmin.add(mnuGestionarRol);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user30.png"))); // NOI18N
         jMenuItem2.setText("Gestionar Usuario");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,7 +236,13 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenu9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jMenu9.setPreferredSize(new java.awt.Dimension(120, 90));
         jMenu9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jMenu9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu9ActionPerformed(evt);
+            }
+        });
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrarSesion30.png"))); // NOI18N
         jMenuItem3.setText("Cerrar Sesion");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,17 +270,33 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+
         this.dispose();
-        
+        FrmLogin login = new FrmLogin();
+        login.setVisible(true);
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-    
+
     private void mnuGestionarRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGestionarRolActionPerformed
-                 centrarVentana(new FrmGestionarRol());
+        centrarVentana(new FrmGestionarRol());
     }//GEN-LAST:event_mnuGestionarRolActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-                centrarVentana(new FrmGestionarUsuario());
+        centrarVentana(new FrmGestionarUsuario());
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenu9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu9ActionPerformed
+        this.dispose();
+
+    }//GEN-LAST:event_jMenu9ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        centrarVentana(new FrmGestionarCliente());
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        centrarVentana(new FrmGestionarProveedor());
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,6 +340,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -290,6 +350,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu mnuAdmin;
     private javax.swing.JMenu mnuCategoria;
     private javax.swing.JMenu mnuCliente;
