@@ -15,6 +15,10 @@ public class Rol {
     public Rol() {
     }
 
+    public Rol(int rolId) {
+        this.rolId = rolId;
+    }
+
     public Rol(int rolId, String descripcion) {
         this.rolId = rolId;
         this.descripcion = descripcion;
@@ -35,5 +39,11 @@ public class Rol {
     public void setRolId(int rolId) {
         this.rolId = rolId;
     }
+
+    @Override
+    public String toString() {
+        return descripcion;
+    }
+    
     
 }

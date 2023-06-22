@@ -11,7 +11,7 @@ import java.util.List;
  * @author JuniorMiguel
  */
 public interface CRUD {
-        public List<Object> listar() throws Exception;
+    public List<Object> listar() throws Exception;
     
     public void registrar(Object obj) throws Exception;
     

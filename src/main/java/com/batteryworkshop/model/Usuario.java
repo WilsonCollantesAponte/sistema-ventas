@@ -9,47 +9,39 @@ import java.sql.Date;
  * @author JuniorMiguel
  */
 public class Usuario {
-    private int uduarioId;
+    private int usuarioId;
     private String documento;
     private String nombres;
     private String apellidos;
-    private Date fechaNacimiento;
-    private String telefono;
     private String correo;
     private String clave;
+    private String telefono;
     private boolean estado;
+    private Date fechaNacimiento;
     private Rol rol;
 
     public Usuario() {
     }
 
-    public Usuario(int uduarioId, String documento, String nombres, String apellidos, Date fechaNacimiento, String telefono, String correo, String clave, boolean estado, Rol rol) {
-        this.uduarioId = uduarioId;
+    public Usuario(int usuarioId, String documento, String nombres, String apellidos, String correo, String clave, String telefono, boolean estado, Date fechaNacimiento, Rol rol) {
+        this.usuarioId = usuarioId;
         this.documento = documento;
         this.nombres = nombres;
         this.apellidos = apellidos;
-        this.fechaNacimiento = fechaNacimiento;
-        this.telefono = telefono;
         this.correo = correo;
         this.clave = clave;
+        this.telefono = telefono;
         this.estado = estado;
+        this.fechaNacimiento = fechaNacimiento;
         this.rol = rol;
     }
 
-    public Rol getRol() {
-        return rol;
+    public int getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
-
-    public int getUduarioId() {
-        return uduarioId;
-    }
-
-    public void setUduarioId(int uduarioId) {
-        this.uduarioId = uduarioId;
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public String getDocumento() {
@@ -76,22 +68,6 @@ public class Usuario {
         this.apellidos = apellidos;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
     public String getCorreo() {
         return correo;
     }
@@ -108,6 +84,14 @@ public class Usuario {
         this.clave = clave;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public boolean isEstado() {
         return estado;
     }
@@ -115,6 +99,25 @@ public class Usuario {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    
+    
     
     
 }

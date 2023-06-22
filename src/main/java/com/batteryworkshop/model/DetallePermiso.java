@@ -4,27 +4,25 @@
  */
 package com.batteryworkshop.model;
 
+import java.util.List;
+
 /**
  *
  * @author JuniorMiguel
  */
 public class DetallePermiso {
     private Rol rol;
-    private Permiso permiso;
+    private List<Permiso> permiso;
 
     public DetallePermiso() {
     }
 
-    public DetallePermiso(Rol rol, Permiso permiso) {
+    public DetallePermiso(Rol rol) {
         this.rol = rol;
-        this.permiso = permiso;
     }
-
-    public Permiso getPermiso() {
-        return permiso;
-    }
-
-    public void setPermiso(Permiso permiso) {
+    
+    public DetallePermiso(Rol rol, List<Permiso> permiso) {
+        this.rol = rol;
         this.permiso = permiso;
     }
 
@@ -34,6 +32,14 @@ public class DetallePermiso {
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+
+    public List<Permiso> getPermiso() {
+        return permiso;
+    }
+
+    public void setPermiso(List<Permiso> permiso) {
+        this.permiso = permiso;
     }
     
 }

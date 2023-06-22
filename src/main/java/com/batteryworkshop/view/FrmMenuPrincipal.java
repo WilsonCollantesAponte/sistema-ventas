@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.batteryworkshop.view;
-
-import com.batteryworkshop.model.Rol;
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
 
@@ -39,19 +37,21 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
+        mnuMantenimiento = new javax.swing.JMenu();
+        mnuCategoria = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        mnuProducto = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
-        jMenu10 = new javax.swing.JMenu();
+        mnuVenta = new javax.swing.JMenu();
+        mnuCompra = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        mnuCliente = new javax.swing.JMenu();
+        mnuProveedor = new javax.swing.JMenu();
+        mnuReporte = new javax.swing.JMenu();
+        mnuAdmin = new javax.swing.JMenu();
         mnuGestionarRol = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
@@ -65,82 +65,116 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGap(0, 1202, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
+            .addGap(0, 504, Short.MAX_VALUE)
         );
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/batteryworkshop/image/mantenimiento50.png"))); // NOI18N
-        jMenu1.setText("Mantenimiento");
-        jMenu1.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jMenu1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jMenuBar1.add(jMenu1);
+        mnuMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mantenimiento50.png"))); // NOI18N
+        mnuMantenimiento.setText("Mantenimiento");
+        mnuMantenimiento.setFont(new java.awt.Font("Segoe UI Symbol", 0, 15)); // NOI18N
+        mnuMantenimiento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mnuMantenimiento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mnuMantenimiento.setPreferredSize(new java.awt.Dimension(120, 90));
+        mnuMantenimiento.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jMenuBar1.add(mnuMantenimiento);
 
-        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/batteryworkshop/image/categorias.png"))); // NOI18N
-        jMenu7.setText("Categoria");
-        jMenu7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mnuCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/categorize_50px.png"))); // NOI18N
+        mnuCategoria.setText("Categoria");
+        mnuCategoria.setFont(new java.awt.Font("Segoe UI Symbol", 0, 15)); // NOI18N
+        mnuCategoria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mnuCategoria.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mnuCategoria.setMinimumSize(new java.awt.Dimension(120, 90));
+        mnuCategoria.setPreferredSize(new java.awt.Dimension(120, 90));
+        mnuCategoria.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         jMenuItem4.setText("Nueva Categoria");
-        jMenu7.add(jMenuItem4);
+        mnuCategoria.add(jMenuItem4);
 
         jMenuItem5.setText("Gestionar Categoria");
-        jMenu7.add(jMenuItem5);
+        mnuCategoria.add(jMenuItem5);
 
-        jMenuBar1.add(jMenu7);
+        jMenuBar1.add(mnuCategoria);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/batteryworkshop/image/producto.png"))); // NOI18N
-        jMenu2.setText("Producto");
-        jMenu2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mnuProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/product1_50px.png"))); // NOI18N
+        mnuProducto.setText("Producto");
+        mnuProducto.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        mnuProducto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mnuProducto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mnuProducto.setMinimumSize(new java.awt.Dimension(120, 90));
+        mnuProducto.setPreferredSize(new java.awt.Dimension(120, 90));
+        mnuProducto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         jMenuItem6.setText("Nuevo Producto");
-        jMenu2.add(jMenuItem6);
+        mnuProducto.add(jMenuItem6);
 
         jMenuItem7.setText("Gestionar Producto");
-        jMenu2.add(jMenuItem7);
+        mnuProducto.add(jMenuItem7);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(mnuProducto);
 
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/batteryworkshop/image/ventas.png"))); // NOI18N
-        jMenu5.setText("Venta");
-        jMenu5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jMenuBar1.add(jMenu5);
+        mnuVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/venta_stock_50px.png"))); // NOI18N
+        mnuVenta.setText("Venta");
+        mnuVenta.setFont(new java.awt.Font("Segoe UI Symbol", 0, 15)); // NOI18N
+        mnuVenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mnuVenta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mnuVenta.setMinimumSize(new java.awt.Dimension(120, 90));
+        mnuVenta.setPreferredSize(new java.awt.Dimension(120, 90));
+        mnuVenta.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jMenuBar1.add(mnuVenta);
 
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/batteryworkshop/image/carrito.png"))); // NOI18N
-        jMenu6.setText("Compras");
-        jMenuBar1.add(jMenu6);
+        mnuCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice_50px.png"))); // NOI18N
+        mnuCompra.setText("Compras");
+        mnuCompra.setFont(new java.awt.Font("Segoe UI Symbol", 0, 15)); // NOI18N
+        mnuCompra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mnuCompra.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mnuCompra.setPreferredSize(new java.awt.Dimension(120, 90));
+        mnuCompra.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/batteryworkshop/image/clientes.png"))); // NOI18N
-        jMenu3.setText("Clientes");
-        jMenu3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jMenuBar1.add(jMenu3);
+        jMenuItem1.setText("Registrar Compra");
+        mnuCompra.add(jMenuItem1);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/batteryworkshop/image/nuevo-cliente.png"))); // NOI18N
-        jMenu4.setText("Proveedores");
-        jMenu4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jMenuBar1.add(jMenu4);
+        jMenuItem8.setText("Ver Detalle ");
+        mnuCompra.add(jMenuItem8);
 
-        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/batteryworkshop/image/reporte.png"))); // NOI18N
-        jMenu8.setText("Reportes");
-        jMenu8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jMenuBar1.add(jMenu8);
+        jMenuBar1.add(mnuCompra);
 
-        jMenu10.setText("Admin");
+        mnuCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sql_database_administrators_group_50px.png"))); // NOI18N
+        mnuCliente.setText("Clientes");
+        mnuCliente.setFont(new java.awt.Font("Segoe UI Symbol", 0, 15)); // NOI18N
+        mnuCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mnuCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mnuCliente.setPreferredSize(new java.awt.Dimension(120, 90));
+        mnuCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jMenuBar1.add(mnuCliente);
+
+        mnuProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/supplier_50px.png"))); // NOI18N
+        mnuProveedor.setText("Proveedores");
+        mnuProveedor.setFont(new java.awt.Font("Segoe UI Symbol", 0, 15)); // NOI18N
+        mnuProveedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mnuProveedor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mnuProveedor.setPreferredSize(new java.awt.Dimension(120, 90));
+        mnuProveedor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jMenuBar1.add(mnuProveedor);
+
+        mnuReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/combo_chart_50px.png"))); // NOI18N
+        mnuReporte.setText("Reportes");
+        mnuReporte.setFont(new java.awt.Font("Segoe UI Symbol", 0, 15)); // NOI18N
+        mnuReporte.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mnuReporte.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mnuReporte.setPreferredSize(new java.awt.Dimension(120, 90));
+        mnuReporte.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jMenuBar1.add(mnuReporte);
+
+        mnuAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/admin_settings_male_50px.png"))); // NOI18N
+        mnuAdmin.setText("Admin");
+        mnuAdmin.setFont(new java.awt.Font("Segoe UI Symbol", 0, 15)); // NOI18N
+        mnuAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mnuAdmin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mnuAdmin.setPreferredSize(new java.awt.Dimension(120, 90));
+        mnuAdmin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         mnuGestionarRol.setText("Gestionar Rol");
         mnuGestionarRol.addActionListener(new java.awt.event.ActionListener() {
@@ -148,14 +182,25 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 mnuGestionarRolActionPerformed(evt);
             }
         });
-        jMenu10.add(mnuGestionarRol);
+        mnuAdmin.add(mnuGestionarRol);
 
         jMenuItem2.setText("Gestionar Usuario");
-        jMenu10.add(jMenuItem2);
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        mnuAdmin.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu10);
+        jMenuBar1.add(mnuAdmin);
 
+        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user_50px.png"))); // NOI18N
         jMenu9.setText("Usuario");
+        jMenu9.setFont(new java.awt.Font("Segoe UI Symbol", 0, 15)); // NOI18N
+        jMenu9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMenu9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jMenu9.setPreferredSize(new java.awt.Dimension(120, 90));
+        jMenu9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         jMenuItem3.setText("Cerrar Sesion");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -177,7 +222,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(escritorio)
         );
 
         pack();
@@ -192,11 +237,15 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                  centrarVentana(new FrmGestionarRol());
     }//GEN-LAST:event_mnuGestionarRolActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+                centrarVentana(new FrmGestionarUsuario());
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
 //    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
+//        /* Set the Windows look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 //        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 //         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -231,23 +280,25 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenu mnuAdmin;
+    private javax.swing.JMenu mnuCategoria;
+    private javax.swing.JMenu mnuCliente;
+    private javax.swing.JMenu mnuCompra;
     private javax.swing.JMenuItem mnuGestionarRol;
+    private javax.swing.JMenu mnuMantenimiento;
+    private javax.swing.JMenu mnuProducto;
+    private javax.swing.JMenu mnuProveedor;
+    private javax.swing.JMenu mnuReporte;
+    private javax.swing.JMenu mnuVenta;
     // End of variables declaration//GEN-END:variables
 }

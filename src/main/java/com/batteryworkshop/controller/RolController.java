@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.batteryworkshop.controller;
 
 import com.batteryworkshop.interfaces.CRUD;
@@ -24,14 +20,15 @@ public class RolController implements CRUD {
     PreparedStatement ps;
     //trae todos los resultados que hayamos consultado en la consulta
     ResultSet rs;
-    //poder ejecutar en nuestra consulta
+    //poder ejecutar una  consulta
     String sql = "";
 
     @Override
-    public List<Object> listar()  {
+    public List<Object> listar() {
+
         //nos trae toda la lista de la tabla rol
         List lista = new ArrayList<>();
-        sql = "select *from Rol Order By descripcion desc";
+        sql = "select *from rol Order By descripcion desc";
         try {
             con = estado.Conectar();
             ps = con.prepareStatement(sql);
@@ -47,25 +44,25 @@ public class RolController implements CRUD {
 //                //2do con los constructores
 //                 rol = new Rol(rs.getInt(1), rs.getString(2));
 //                 lista.add(rol);
-                 
-                 //3ro 
-                 lista.add(new Rol(rs.getInt(1), rs.getString(2)));
-                 
-                 
+
+                //3ro 
+                lista.add(new Rol(rs.getInt(1),
+                        rs.getString(2)));
+
             }
         } catch (Exception e) {
             e.printStackTrace(System.err);
 
-        }finally{
+        } finally {
             try {
-                if(con!=null){
-                con.close();
+                if (con != null) {
+                    con.close();
                 }
-                if(ps!=null){
-                ps.close();
+                if (ps != null) {
+                    ps.close();
                 }
-                if(rs!=null){
-                rs.close();
+                if (rs != null) {
+                    rs.close();
                 }
             } catch (Exception e) {
                 e.printStackTrace(System.err);
@@ -77,27 +74,212 @@ public class RolController implements CRUD {
 
     @Override
     public void registrar(Object obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Rol rol = (Rol) obj;
+        sql = "insert into rol(descripcion) values(?);";
+
+        try {
+
+            con = estado.Conectar();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, rol.getDescripcion());
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new Exception("Ya existe El rol");
+        } catch (Exception p) {
+            p.printStackTrace(System.err);
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(System.err);
+            }
+        }
+
     }
 
     @Override
     public void editar(Object obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Rol rol = (Rol) obj;
+        sql = "update rol set descripcion=? where rolId=?;";
+        try {
+
+            con = estado.Conectar();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, rol.getDescripcion());
+            ps.setInt(2, rol.getRolId());
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new Exception("Ya existe El rol");
+        } catch (Exception p) {
+            p.printStackTrace(System.err);
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(System.err);
+            }
+        }
+
     }
 
     @Override
     public void eliminar(Object obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        sql = "delete from rol where rolID = " + (int) obj;
+        try {
+            con = estado.Conectar();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new Exception("No Se Puede Eliminar Este rol Pertenece a un Usuario");
+        } catch (Exception p) {
+            p.printStackTrace(System.err);
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(System.err);
+            }
+        }
     }
 
     @Override
-    public Object obtenerObjecto(Object obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Object obtenerObjecto(Object obj) {
+        sql = "select * from rol where rolID = " + (int) obj;
+
+        try {
+
+            con = estado.Conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                return new Rol(
+                        rs.getInt(1),
+                        rs.getString(2)
+                );
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(System.err);
+            }
+        }
+
+        return new Rol();
     }
 
     @Override
-    public List<Object> listar(Object obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Object> listar(Object obj) {
+
+         List lista = new ArrayList();
+        sql = "select * from rol where descripcion  like '%"+obj.toString()+"%'";
+
+        try {
+
+            con = estado.Conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                          
+                lista.add(new Rol(
+                        rs.getInt(1),
+                        rs.getString(2)
+                ));
+                
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(System.err);
+            }
+        }
+
+        return lista;
+    }  
+    
+    public Object obtenerObjecto(String descripcion) {
+        
+        sql = "select * from rol where descripcion = '"+descripcion+"'";
+
+        try {
+
+            con = estado.Conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                          
+                return new Rol(
+                        rs.getInt(1),
+                        rs.getString(2)
+                );
+                
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(System.err);
+            }
+        }
+
+        return new Rol();
     }
 
 }

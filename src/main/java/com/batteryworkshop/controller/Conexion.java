@@ -5,11 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
-
-    String url = "jdbc:sqlserver://localhost:1433;database=Bd_ProyectVentas";
+    String url = "jdbc:sqlserver://localhost:1433;database=BdProjectVentas";
     String user = "SA";
     String password = "juniorjm/3";
-
     public Connection Conectar() {
         Connection cnn = null;
         try {
@@ -21,6 +19,5 @@ public class Conexion {
             // Manejo de errores
         }
         return cnn;
-
     }
 }
