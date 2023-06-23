@@ -239,7 +239,7 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAgregarActionPerformed
-        FrmMenuPrincipal.centrarVentana(new FrmRegistrarCliente());
+       FrmMenuPrincipal.centrarVentana(new FrmRegistrarCliente());
 
     }//GEN-LAST:event_cmdAgregarActionPerformed
 

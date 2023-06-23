@@ -65,8 +65,8 @@ public class ClienteController implements CRUD {
     public void registrar(Object obj) throws Exception {
 
         Cliente cliente = (Cliente) obj;
-        sql = "insert into cliente(dni,nombres,apellidos,correo,clave,telefono,estado)\n"
-                + "values(?,?,?,?,?,?,?)";
+        sql = "insert into cliente(dni,nombres,apellidos,correo,telefono,estado)\n"
+                + "values(?,?,?,?,?,?)";
 
         try {
 
@@ -76,8 +76,8 @@ public class ClienteController implements CRUD {
             ps.setString(2, cliente.getNombres());
             ps.setString(3, cliente.getApellidos());
             ps.setString(4, cliente.getCorreo());
-            ps.setString(6, cliente.getTelefono());
-            ps.setBoolean(7, cliente.isEstado());
+            ps.setString(5, cliente.getTelefono());
+            ps.setBoolean(6, cliente.isEstado());
             ps.executeUpdate();
 
         } catch (SQLException pe) {
