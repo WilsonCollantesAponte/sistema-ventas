@@ -178,13 +178,9 @@ public class FrmRegistrarProveedor extends javax.swing.JInternalFrame {
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Apellidos*");
 
-        txtNombres.setForeground(new java.awt.Color(204, 204, 204));
-        txtNombres.setText("Ej. José Luis");
         txtNombres.setMinimumSize(new java.awt.Dimension(64, 17));
         txtNombres.setPreferredSize(new java.awt.Dimension(69, 20));
 
-        txtDocumento.setForeground(new java.awt.Color(204, 204, 204));
-        txtDocumento.setText("Ej. 12345678");
         txtDocumento.setMinimumSize(new java.awt.Dimension(64, 17));
         txtDocumento.setPreferredSize(new java.awt.Dimension(69, 20));
 
@@ -197,24 +193,18 @@ public class FrmRegistrarProveedor extends javax.swing.JInternalFrame {
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Telefono");
 
-        txtTelefono.setForeground(new java.awt.Color(204, 204, 204));
-        txtTelefono.setText("Ej. 987654321");
         txtTelefono.setMinimumSize(new java.awt.Dimension(64, 17));
         txtTelefono.setPreferredSize(new java.awt.Dimension(69, 20));
 
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Correo");
 
-        txtCorreo.setForeground(new java.awt.Color(204, 204, 204));
-        txtCorreo.setText("Ej. correo@correo.com");
         txtCorreo.setMinimumSize(new java.awt.Dimension(64, 17));
         txtCorreo.setPreferredSize(new java.awt.Dimension(69, 20));
 
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Clave");
 
-        txtApellidos.setForeground(new java.awt.Color(204, 204, 204));
-        txtApellidos.setText("Ej. Gonzalez Manay");
         txtApellidos.setMinimumSize(new java.awt.Dimension(64, 17));
         txtApellidos.setPreferredSize(new java.awt.Dimension(69, 20));
 
@@ -232,7 +222,6 @@ public class FrmRegistrarProveedor extends javax.swing.JInternalFrame {
             }
         });
 
-        cmbRol.setForeground(new java.awt.Color(204, 204, 204));
         cmbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

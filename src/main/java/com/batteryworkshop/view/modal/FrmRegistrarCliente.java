@@ -14,9 +14,11 @@ import javax.swing.JOptionPane;
  * @author JuniorMiguel
  */
 public class FrmRegistrarCliente extends javax.swing.JInternalFrame {
+
     ClienteController clienteC = new ClienteController();
     public static int idCliente = 0;
     public static boolean vista = false;
+
     /**
      * Creates new form FrmRegistrarCliente
      */
@@ -24,6 +26,7 @@ public class FrmRegistrarCliente extends javax.swing.JInternalFrame {
         initComponents();
         acciones();
     }
+
     void acciones() {
 
         if (vista) {
@@ -32,21 +35,25 @@ public class FrmRegistrarCliente extends javax.swing.JInternalFrame {
             txtApellidos.setEnabled(false);
             txtCorreo.setEnabled(false);
             txtTelefono.setEnabled(false);
-            cmbEstado.setEnabled(false);           
+            cmbEstado.setEnabled(false);
             cmdGrabar.setEnabled(false);
 
         }
         if (idCliente > 0) {
 
             Cliente clienteV = (Cliente) clienteC.obtenerObjecto(idCliente);
-            txtDocumento.setText(clienteV.getDocumento());          
+            txtDocumento.setText(clienteV.getDocumento());
             txtNombres.setText(clienteV.getNombres());
             txtApellidos.setText(clienteV.getApellidos());
             txtCorreo.setText(clienteV.getCorreo());
             txtTelefono.setText(clienteV.getTelefono());
-            cmbEstado.setSelectedIndex(0);         
+            cmbEstado.setSelectedIndex(0);
         }
 
+    }
+    //lamda
+    public boolean determinarEstado(String seleccion) {
+        return seleccion.equals("Activo");
     }
 
     void grabar() {
@@ -57,7 +64,9 @@ public class FrmRegistrarCliente extends javax.swing.JInternalFrame {
         cliente.setApellidos(txtApellidos.getText().toUpperCase());
         cliente.setCorreo(txtCorreo.getText().toUpperCase());
         cliente.setTelefono(txtTelefono.getText());
-//      cliente.setEstado(cmbEstado.getSelectedItem().toString());
+        String seleccion = cmbEstado.getSelectedItem().toString();
+        boolean estado = determinarEstado(seleccion);
+        cliente.setEstado(estado);
 
         if (cmdGrabar.getText().equalsIgnoreCase("Grabar")) {
             try {
@@ -87,6 +96,7 @@ public class FrmRegistrarCliente extends javax.swing.JInternalFrame {
         }
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,8 +144,6 @@ public class FrmRegistrarCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        txtDocumento.setForeground(new java.awt.Color(204, 204, 204));
-        txtDocumento.setText("Ej. 12345678");
         txtDocumento.setMinimumSize(new java.awt.Dimension(64, 17));
         txtDocumento.setPreferredSize(new java.awt.Dimension(69, 20));
 
@@ -145,24 +153,19 @@ public class FrmRegistrarCliente extends javax.swing.JInternalFrame {
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Nombres*");
 
-        txtNombres.setForeground(new java.awt.Color(204, 204, 204));
-        txtNombres.setText("Ej. José Luis");
         txtNombres.setMinimumSize(new java.awt.Dimension(64, 17));
         txtNombres.setPreferredSize(new java.awt.Dimension(69, 20));
 
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Apellidos*");
 
-        txtApellidos.setForeground(new java.awt.Color(204, 204, 204));
-        txtApellidos.setText("Ej. Gonzalez Manay");
         txtApellidos.setMinimumSize(new java.awt.Dimension(64, 17));
         txtApellidos.setPreferredSize(new java.awt.Dimension(69, 20));
 
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Estado");
 
-        cmbEstado.setForeground(new java.awt.Color(204, 204, 204));
-        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Activo", "Inactivo" }));
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Activo", "Inactivo" }));
 
         cmdGrabar.setBackground(new java.awt.Color(27, 118, 253));
         cmdGrabar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -181,13 +184,10 @@ public class FrmRegistrarCliente extends javax.swing.JInternalFrame {
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Correo*");
 
-        txtCorreo.setForeground(new java.awt.Color(204, 204, 204));
-        txtCorreo.setText("Ej. 12345678");
+        txtCorreo.setToolTipText("");
         txtCorreo.setMinimumSize(new java.awt.Dimension(64, 17));
         txtCorreo.setPreferredSize(new java.awt.Dimension(69, 20));
 
-        txtTelefono.setForeground(new java.awt.Color(204, 204, 204));
-        txtTelefono.setText("Ej. José Luis");
         txtTelefono.setMinimumSize(new java.awt.Dimension(64, 17));
         txtTelefono.setPreferredSize(new java.awt.Dimension(69, 20));
 

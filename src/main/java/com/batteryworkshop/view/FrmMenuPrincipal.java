@@ -41,6 +41,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuMantenimiento = new javax.swing.JMenu();
+        jMenuItem13 = new javax.swing.JMenuItem();
         mnuCategoria = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -86,6 +87,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         mnuMantenimiento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         mnuMantenimiento.setPreferredSize(new java.awt.Dimension(120, 90));
         mnuMantenimiento.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jMenuItem13.setText("Negocio");
+        mnuMantenimiento.add(jMenuItem13);
+
         jMenuBar1.add(mnuMantenimiento);
 
         mnuCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/categorize_50px.png"))); // NOI18N
@@ -182,6 +187,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         mnuProveedor.setPreferredSize(new java.awt.Dimension(120, 90));
         mnuProveedor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/rol30.png"))); // NOI18N
         jMenuItem10.setText("Gestionar Proveedor");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -343,6 +349,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

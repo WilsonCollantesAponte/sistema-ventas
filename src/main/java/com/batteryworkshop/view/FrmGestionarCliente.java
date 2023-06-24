@@ -24,8 +24,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmGestionarCliente extends javax.swing.JInternalFrame {
 
-    public static ClienteController clienteC= new ClienteController();
-
+    public static ClienteController clienteC = new ClienteController();
+    
     /**
      * Creates new form FrmGestionarCliente
      */
@@ -33,10 +33,14 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
         initComponents();
         listar("");
     }
+    public static String determinarEstadoCliente(Cliente cliente) {
+        return cliente.isEstado() ? "Activo" : "Inactivo";
+    }
 
     public static void listar(String texto) {
+        
         //agregar columnas
-        String columnas[] = {"#", "Documento", "Nombre", "Email", "Telefono","Estado","","", ""};
+        String columnas[] = {"#", "Documento", "Nombre", "Email", "Telefono", "Estado", "", "", ""};
         //me va ha permitir crear una tabla sombra  de cualquier clase y traer mis datos 
         DefaultTableModel modelo = new DefaultTableModel();
         for (String columns : columnas) {
@@ -58,6 +62,7 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
 
         List lista;
         Cliente cliente;
+        
 
         if (txtBuscar.getText().length() == 0) {
             lista = clienteC.listar();
@@ -66,7 +71,7 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
             lista = clienteC.listar(texto);
         }
         //lista.forEach((x)->{});funcion lamda
-        
+
         for (Object obj : lista) {
             cliente = (Cliente) obj;
 
@@ -93,14 +98,15 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
             botonVer.setToolTipText("vista del registro");
             botonVer.setBorder(null);
             botonVer.setBackground(new Color(41, 143, 96));
-
+            
+            String estado = determinarEstadoCliente(cliente); 
             modelo.addRow(new Object[]{
                 cliente.getClienteId(),
                 cliente.getDocumento(),
-                cliente.getNombres()+ " " + cliente.getApellidos(),
-                cliente.getCorreo() ,
+                cliente.getNombres() + " " + cliente.getApellidos(),
+                cliente.getCorreo(),
                 cliente.getTelefono(),
-                cliente.isEstado(),
+                estado,
                 botonModificar,
                 botonEliminar,
                 botonVer
@@ -114,10 +120,10 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
         tbListado.getColumnModel().getColumn(0).setMinWidth(0);
         tbListado.getColumnModel().getColumn(0).setPreferredWidth(0);
         tbListado.getColumnModel().getColumn(1).setPreferredWidth(100);
-        tbListado.getColumnModel().getColumn(2).setPreferredWidth(220);
+        tbListado.getColumnModel().getColumn(2).setPreferredWidth(200);
         tbListado.getColumnModel().getColumn(3).setPreferredWidth(175);
         tbListado.getColumnModel().getColumn(4).setPreferredWidth(80);
-        tbListado.getColumnModel().getColumn(5).setPreferredWidth(50);
+        tbListado.getColumnModel().getColumn(5).setPreferredWidth(70);
         tbListado.getColumnModel().getColumn(6).setPreferredWidth(30);
         tbListado.getColumnModel().getColumn(7).setPreferredWidth(30);
         tbListado.getColumnModel().getColumn(8).setPreferredWidth(30);
@@ -239,7 +245,7 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAgregarActionPerformed
-       FrmMenuPrincipal.centrarVentana(new FrmRegistrarCliente());
+        FrmMenuPrincipal.centrarVentana(new FrmRegistrarCliente());
 
     }//GEN-LAST:event_cmdAgregarActionPerformed
 
@@ -295,23 +301,23 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
 //                            Alerta alerta = new Alerta("Alerta", "Debe seleccionar un Cliente");
                             JOptionPane.showMessageDialog(null, "Debe Seleccionar Un Cliente");
                         } else {
-//                            FrmRegistrarCliente.idCliente = id;
+                            FrmRegistrarCliente.idCliente = id;
                             FrmMenuPrincipal.centrarVentana(new FrmRegistrarCliente());
-//                            FrmRegistrarCliente.cmdGrabar.setText("Modificar");
+                            FrmRegistrarCliente.cmdGrabar.setText("Modificar");
 
                         }
                     }
-                    case "btnPermiso" -> {
-//                        FrmGestionarPermiso.idCliente = id;
-//                        FrmMenuPrincipal.centrarVentana(new FrmGestionarPermiso());
-                    }
+//                    case "btnPermiso" -> {
+////                        FrmGestionarPermiso.idCliente = id;
+////                        FrmMenuPrincipal.centrarVentana(new FrmGestionarPermiso());
+//                    }
                     case "btnVer" -> {
                         if (filas == 0) {
 //                            Alerta alerta = new Alerta("Alerta", "Debe seleccionar un tipo");
                             JOptionPane.showMessageDialog(null, "Debe Seleccionar Un Cliente");
                         } else {
-//                            FrmRegistrarCliente.vista = true;
-//                            FrmRegistrarCliente.idCliente = id;
+                            FrmRegistrarCliente.vista = true;
+                            FrmRegistrarCliente.idCliente = id;
                             FrmMenuPrincipal.centrarVentana(new FrmRegistrarCliente());
                         }
                     }
