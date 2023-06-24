@@ -1,46 +1,60 @@
-package com.batteryworkshop.controller;
+package com.batteryworkshop.Controller;
 
+import com.batteryworkshop.controller.Conexion;
 import com.batteryworkshop.interfaces.CRUD;
-import com.batteryworkshop.model.Proveedor;
+import com.batteryworkshop.model.Categoria;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProveedorController implements CRUD {
+/**
+ *
+ * @author JuniorMiguel
+ */
+public class CategoriaController implements CRUD {
 
+    //manipular el acceso de datos al modelo
+    //conexcion ha sido un exito o un error
     Conexion estado = new Conexion();
     Connection con;
+    //prepara toda la consulta que enviamos por java
     PreparedStatement ps;
+    //trae todos los resultados que hayamos consultado en la consulta
     ResultSet rs;
+    //poder ejecutar una  consulta
     String sql = "";
 
     @Override
     public List<Object> listar() {
 
+        //nos trae toda la lista de la tabla categoria
         List lista = new ArrayList<>();
-        sql = "SELECT * FROM proveedor ORDER BY proveedorID DESC";
-
+        sql = "select *from categoria Order By descripcion desc";
         try {
-
             con = estado.Conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-
+            //pregunta si aún hay regitros 
             while (rs.next()) {
+                //formas de imprimer los datos metodos set y get
+//                Categoria categoria = new Categoria();
+//                categoria.setCategoriaId(rs.getInt(1));
+//                categoria.setDescripcion(rs.getString(2));
+//                lista.add(categoria);
+//                
+//                //2do con los constructores
+//                 categoria = new Categoria(rs.getInt(1), rs.getString(2));
+//                 lista.add(categoria);
 
-                lista.add(new Proveedor(
-                        rs.getInt(1),
+                //3ro 
+                lista.add(new Categoria(rs.getInt(1),
                         rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getBoolean(6))
-                );
+                        rs.getString(3)));
 
             }
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace(System.err);
+
         } finally {
             try {
                 if (con != null) {
@@ -52,7 +66,7 @@ public class ProveedorController implements CRUD {
                 if (rs != null) {
                     rs.close();
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace(System.err);
             }
         }
@@ -62,26 +76,20 @@ public class ProveedorController implements CRUD {
 
     @Override
     public void registrar(Object obj) throws Exception {
-
-        Proveedor proveedor = (Proveedor) obj;
-        sql = "insert into proveedor(dni,razonSocial,correo,telefono,estado)\n"
-                + "values(?,?,?,?,?)";
+        Categoria categoria = (Categoria) obj;
+        sql = "insert into categoria(descripcion) values(?);";
 
         try {
 
             con = estado.Conectar();
             ps = con.prepareStatement(sql);
-            ps.setString(1, proveedor.getDocumento());
-            ps.setString(2, proveedor.getRazonSocial());
-            ps.setString(3, proveedor.getCorreo());
-            ps.setString(4, proveedor.getTelefono());
-            ps.setBoolean(5, proveedor.isEstado());
+            ps.setString(1, categoria.getDescripcion());
             ps.executeUpdate();
 
-        } catch (SQLException pe) {
-            throw new Exception("Ya existe El proveedor");
-        } catch (Exception e) {
-            e.printStackTrace(System.err);
+        } catch (SQLException e) {
+            throw new Exception("Ya existe La Categoria");
+        } catch (Exception p) {
+            p.printStackTrace(System.err);
         } finally {
             try {
                 if (con != null) {
@@ -99,27 +107,20 @@ public class ProveedorController implements CRUD {
 
     @Override
     public void editar(Object obj) throws Exception {
-
-        Proveedor proveedor = (Proveedor) obj;
-        sql = "update proveedor set dni=?,razonSocial=?,correo=?,telefono=?,estado=?"
-                + " where proveedorID = ?";
-
+        Categoria categoria = (Categoria) obj;
+        sql = "update categoria set descripcion=? where categoriaId=?;";
         try {
 
             con = estado.Conectar();
             ps = con.prepareStatement(sql);
-            ps.setString(1, proveedor.getDocumento());
-            ps.setString(2, proveedor.getRazonSocial());
-            ps.setString(3, proveedor.getCorreo());
-            ps.setString(4, proveedor.getTelefono());
-            ps.setBoolean(5, proveedor.isEstado());
-            ps.setInt(6, proveedor.getProveedorId());
+            ps.setString(1, categoria.getDescripcion());        
+            ps.setInt(2, categoria.getCategoriaId());
             ps.executeUpdate();
 
-        } catch (SQLException pe) {
-            throw new Exception("Ya existe El proveedor");
-        } catch (Exception e) {
-            e.printStackTrace(System.err);
+        } catch (SQLException e) {
+            throw new Exception("Ya existe La Categoria");
+        } catch (Exception p) {
+            p.printStackTrace(System.err);
         } finally {
             try {
                 if (con != null) {
@@ -137,19 +138,16 @@ public class ProveedorController implements CRUD {
 
     @Override
     public void eliminar(Object obj) throws Exception {
-
-        sql = "delete from proveedor where proveedorID = " + (int) obj;
-
+        sql = "delete from categoria where categoriaId = " + (int) obj;
         try {
-
             con = estado.Conectar();
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
 
-        } catch (SQLException pe) {
-            throw new Exception("No se puede eliimnar  este proveedor");
-        } catch (Exception e) {
-            e.printStackTrace(System.err);
+        } catch (SQLException e) {
+            throw new Exception("No Se Puede Eliminar Esta Categoria ");
+        } catch (Exception p) {
+            p.printStackTrace(System.err);
         } finally {
             try {
                 if (con != null) {
@@ -162,13 +160,11 @@ public class ProveedorController implements CRUD {
                 e.printStackTrace(System.err);
             }
         }
-
     }
 
     @Override
     public Object obtenerObjecto(Object obj) {
-
-        sql = "select * from proveedor where proveedorID = " + (int) obj;
+        sql = "select * from categoria where categoriaId = " + (int) obj;
 
         try {
 
@@ -178,13 +174,11 @@ public class ProveedorController implements CRUD {
 
             if (rs.next()) {
 
-                return new Proveedor(
+                return new Categoria(
                         rs.getInt(1),
                         rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getBoolean(6)
+                        rs.getString(3)
+                        
                 );
 
             }
@@ -207,40 +201,34 @@ public class ProveedorController implements CRUD {
             }
         }
 
-        return new Proveedor();
+        return new Categoria();
     }
 
     @Override
     public List<Object> listar(Object obj) {
 
-        List lista = new ArrayList();
-        sql = "select * from proveedor \n"
-                + "where dni  like '%" + obj.toString() + "%' \n"
-                + "or razonSocial like '%" + obj.toString() + "%' \n";
-//                + "or apellidos like '" + obj.toString() + "%'";
+         List lista = new ArrayList();
+        sql = "select * from categoria where descripcion  like '%"+obj.toString()+"%'";
 
         try {
 
             con = estado.Conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-
+            
             while (rs.next()) {
-
-                lista.add(new Proveedor(
+                          
+                lista.add(new Categoria(
                         rs.getInt(1),
                         rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getBoolean(6)
+                        rs.getString(3)
                 ));
-
+                
             }
 
         } catch (SQLException e) {
             e.printStackTrace(System.err);
-        } finally {
+        }finally {
             try {
                 if (con != null) {
                     con.close();
@@ -257,7 +245,47 @@ public class ProveedorController implements CRUD {
         }
 
         return lista;
+    }  
+    
+    public Object obtenerObjecto(String descripcion) {
+        
+        sql = "select * from categoria where descripcion = '"+descripcion+"'";
 
+        try {
+
+            con = estado.Conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                          
+                return new Categoria(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3)
+                );
+                
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(System.err);
+            }
+        }
+
+        return new Categoria();
     }
 
 }

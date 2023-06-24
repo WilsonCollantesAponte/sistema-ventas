@@ -4,6 +4,7 @@
  */
 package com.batteryworkshop.view;
 
+import com.batteryworkshop.view.modal.FrmRegistrarCategoria;
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
 
@@ -106,6 +107,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         mnuCategoria.add(jMenuItem4);
 
         jMenuItem5.setText("Gestionar Categoria");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         mnuCategoria.add(jMenuItem5);
 
         jMenuBar1.add(mnuCategoria);
@@ -120,9 +126,19 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         mnuProducto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         jMenuItem6.setText("Nuevo Producto");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         mnuProducto.add(jMenuItem6);
 
         jMenuItem7.setText("Gestionar Producto");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         mnuProducto.add(jMenuItem7);
 
         jMenuBar1.add(mnuProducto);
@@ -303,6 +319,18 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         centrarVentana(new FrmGestionarProveedor());
     }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+           FrmMenuPrincipal.centrarVentana(new FrmGestionarCategoria());
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+      
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,12 +4,14 @@
  */
 package com.batteryworkshop.view;
 
+
 import com.batteryworkshop.controller.ClienteController;
 import com.batteryworkshop.model.Cliente;
 import com.batteryworkshop.properties.RenderTable;
 import com.batteryworkshop.view.modal.FrmRegistrarCliente;
 import java.awt.Color;
 import java.awt.Image;
+import java.time.LocalDate;
 import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -24,21 +26,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmGestionarCliente extends javax.swing.JInternalFrame {
 
-    public static ClienteController clienteC = new ClienteController();
-    
+    public static ClienteController clientearioC= new ClienteController();
+
     /**
-     * Creates new form FrmGestionarCliente
+     * Creates new form FrmGestionarRol
      */
     public FrmGestionarCliente() {
         initComponents();
         listar("");
     }
-    public static String determinarEstadoCliente(Cliente cliente) {
-        return cliente.isEstado() ? "Activo" : "Inactivo";
-    }
 
     public static void listar(String texto) {
-        
         //agregar columnas
         String columnas[] = {"#", "Documento", "Nombre", "Email", "Telefono", "Estado", "", "", ""};
         //me va ha permitir crear una tabla sombra  de cualquier clase y traer mis datos 
@@ -49,29 +47,29 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
         //1 creo una lista
 //        List lista;
         //2 traigo los datos de mi lista
-//        Cliente rol;
+//        Rol rol;
         //3 creo un objeto
 //        Object []  objeto = new Object[6];
 //        //4 agregar las filas
 //        for (int i = 0; i <lista.size(); i++) {
-//            rol=(Cliente) lista.get(i);
-//            objeto[0]=rol.getClienteId();
+//            rol=(Rol) lista.get(i);
+//            objeto[0]=rol.getRolId();
 //            objeto[1]=rol.getDescripcion();
 //            modelo.addRow(objeto);
 //        }
 
         List lista;
         Cliente cliente;
-        
+  
 
         if (txtBuscar.getText().length() == 0) {
-            lista = clienteC.listar();
+            lista = clientearioC.listar();
 
         } else {
-            lista = clienteC.listar(texto);
+            lista = clientearioC.listar(texto);
         }
         //lista.forEach((x)->{});funcion lamda
-
+        
         for (Object obj : lista) {
             cliente = (Cliente) obj;
 
@@ -98,15 +96,14 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
             botonVer.setToolTipText("vista del registro");
             botonVer.setBorder(null);
             botonVer.setBackground(new Color(41, 143, 96));
-            
-            String estado = determinarEstadoCliente(cliente); 
+
             modelo.addRow(new Object[]{
                 cliente.getClienteId(),
                 cliente.getDocumento(),
                 cliente.getNombres() + " " + cliente.getApellidos(),
                 cliente.getCorreo(),
                 cliente.getTelefono(),
-                estado,
+                cliente.isEstado()?"ACTIVO":"INACTIVO",
                 botonModificar,
                 botonEliminar,
                 botonVer
@@ -151,7 +148,6 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Gestionar Cliente");
-        setToolTipText("");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -199,7 +195,7 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 376, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 374, Short.MAX_VALUE)
                         .addComponent(cmdAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -236,7 +232,7 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -280,9 +276,9 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
                             if (opcion == 0) {
 
                                 try {
-                                    clienteC.eliminar(id);
+                                    clientearioC.eliminar(id);
                                     JOptionPane.showMessageDialog(null, "Cliente Eliminado Correctamente");
-//                                    AlertaBien alertaBien = new AlertaBien("Mensaje", "Cliente eliminado correctamente!");
+//                                    AlertaBien alertaBien = new AlertaBien("Mensaje", "Rol eliminado correctamente!");
                                     listar("");
                                 } catch (Exception ex) {
 //                                    AlertaError err = new AlertaError("ERROR", ex.getMessage());
@@ -298,7 +294,7 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
                     }
                     case "btnModificar" -> {
                         if (filas == 0) {//si no elije ninguna fila
-//                            Alerta alerta = new Alerta("Alerta", "Debe seleccionar un Cliente");
+//                            Alerta alerta = new Alerta("Alerta", "Debe seleccionar un Rol");
                             JOptionPane.showMessageDialog(null, "Debe Seleccionar Un Cliente");
                         } else {
                             FrmRegistrarCliente.idCliente = id;
@@ -307,10 +303,10 @@ public class FrmGestionarCliente extends javax.swing.JInternalFrame {
 
                         }
                     }
-//                    case "btnPermiso" -> {
-////                        FrmGestionarPermiso.idCliente = id;
-////                        FrmMenuPrincipal.centrarVentana(new FrmGestionarPermiso());
-//                    }
+                    case "btnPermiso" -> {
+//                        FrmGestionarPermiso.idRol = id;
+//                        FrmMenuPrincipal.centrarVentana(new FrmGestionarPermiso());
+                    }
                     case "btnVer" -> {
                         if (filas == 0) {
 //                            Alerta alerta = new Alerta("Alerta", "Debe seleccionar un tipo");
