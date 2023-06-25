@@ -284,9 +284,9 @@ public class UsuarioDao implements CRUD {
 
     }
     
-    public Object iniciarSesion(String documento) {
+    public Object iniciarSesion(String documento,String clave) {
 
-        sql = "select * from usuario where documento = '"+documento+"'" ;
+        sql = "select * from usuario where dni= '"+documento+"'  and clave='"+clave+"'";
 
         try {
 

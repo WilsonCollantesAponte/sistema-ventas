@@ -6,7 +6,6 @@ import com.batteryworkshop.model.Rol;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  *
  * @author JuniorMiguel

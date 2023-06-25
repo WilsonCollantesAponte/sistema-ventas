@@ -4,6 +4,7 @@
  */
 package com.batteryworkshop.view;
 
+import com.batteryworkshop.model.Usuario;
 import com.batteryworkshop.view.modal.FrmRegistrarCategoria;
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
@@ -14,12 +15,36 @@ import javax.swing.JInternalFrame;
  */
 public class FrmMenuPrincipal extends javax.swing.JFrame {
 
+    public static Usuario usuario;//static para navegar de ventana a ventana y enviar datos
+
     /**
      * Creates new form FrmPrincipal
      */
     public FrmMenuPrincipal() {
         initComponents();
+//      mnuUsuario.setText(usuario.getNombres());
         this.setExtendedState(6);
+        cargarUsuario();
+    }
+
+    private void cargarUsuario() {
+        String nombreActual = "";
+        String nombre = usuario.getNombres().trim();
+        String apellidos = usuario.getApellidos().trim();
+        int indiceNombre = nombre.indexOf(" ");
+        int indiceApellidos = apellidos.indexOf(" ");
+        if (indiceNombre == -1) {
+            nombreActual+=nombre + " ";
+        } else {
+            nombreActual+=nombre.substring(0, indiceNombre) + " ";
+        }
+        
+         if (indiceApellidos == -1) {
+            nombreActual+=apellidos + " ";
+        } else {
+            nombreActual+=nombre.substring(0, indiceApellidos) + " ";
+        }
+         mnuUsuario.setText(nombreActual);
     }
 
     public static void centrarVentana(JInternalFrame frame) {
@@ -63,7 +88,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         mnuAdmin = new javax.swing.JMenu();
         mnuGestionarRol = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu9 = new javax.swing.JMenu();
+        mnuUsuario = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -251,16 +276,16 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuAdmin);
 
-        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user_50px.png"))); // NOI18N
-        jMenu9.setText("Usuario");
-        jMenu9.setFont(new java.awt.Font("Segoe UI Symbol", 0, 15)); // NOI18N
-        jMenu9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu9.setPreferredSize(new java.awt.Dimension(120, 90));
-        jMenu9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jMenu9.addActionListener(new java.awt.event.ActionListener() {
+        mnuUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user_50px.png"))); // NOI18N
+        mnuUsuario.setText("Usuario");
+        mnuUsuario.setFont(new java.awt.Font("Segoe UI Symbol", 0, 15)); // NOI18N
+        mnuUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mnuUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mnuUsuario.setPreferredSize(new java.awt.Dimension(120, 90));
+        mnuUsuario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mnuUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu9ActionPerformed(evt);
+                mnuUsuarioActionPerformed(evt);
             }
         });
 
@@ -271,9 +296,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItem3);
+        mnuUsuario.add(jMenuItem3);
 
-        jMenuBar1.add(jMenu9);
+        jMenuBar1.add(mnuUsuario);
 
         setJMenuBar(jMenuBar1);
 
@@ -307,10 +332,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         centrarVentana(new FrmGestionarUsuario());
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenu9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu9ActionPerformed
+    private void mnuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuUsuarioActionPerformed
         this.dispose();
 
-    }//GEN-LAST:event_jMenu9ActionPerformed
+    }//GEN-LAST:event_mnuUsuarioActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         centrarVentana(new FrmGestionarCliente());
@@ -321,7 +346,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-           FrmMenuPrincipal.centrarVentana(new FrmGestionarCategoria());
+        FrmMenuPrincipal.centrarVentana(new FrmGestionarCategoria());
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -329,7 +354,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-            FrmMenuPrincipal.centrarVentana(new FrmGestionarProducto());
+        FrmMenuPrincipal.centrarVentana(new FrmGestionarProducto());
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
@@ -371,7 +396,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -395,6 +419,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu mnuProducto;
     private javax.swing.JMenu mnuProveedor;
     private javax.swing.JMenu mnuReporte;
+    private javax.swing.JMenu mnuUsuario;
     private javax.swing.JMenu mnuVenta;
     // End of variables declaration//GEN-END:variables
 }
