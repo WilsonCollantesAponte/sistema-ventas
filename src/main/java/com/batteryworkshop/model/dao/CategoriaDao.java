@@ -1,6 +1,6 @@
-package com.batteryworkshop.Controller;
+package com.batteryworkshop.model.dao;
 
-import com.batteryworkshop.controller.Conexion;
+import com.batteryworkshop.model.Conexion;
 import com.batteryworkshop.interfaces.CRUD;
 import com.batteryworkshop.model.Categoria;
 import java.sql.*;
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author JuniorMiguel
  */
-public class CategoriaController implements CRUD {
+public class CategoriaDao implements CRUD {
 
     //manipular el acceso de datos al modelo
     //conexcion ha sido un exito o un error

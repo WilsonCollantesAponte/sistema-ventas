@@ -5,7 +5,7 @@
 package com.batteryworkshop.view;
 
 
-import com.batteryworkshop.controller.ProveedorController;
+import com.batteryworkshop.model.dao.ProveedorDao;
 import com.batteryworkshop.model.Proveedor;
 import com.batteryworkshop.properties.RenderTable;
 import com.batteryworkshop.view.modal.FrmRegistrarProveedor;
@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmGestionarProveedor extends javax.swing.JInternalFrame {
 
-    public static ProveedorController proveedorC= new ProveedorController();
+    public static ProveedorDao proveedorC= new ProveedorDao();
 
     /**
      * Creates new form FrmGestionarRol

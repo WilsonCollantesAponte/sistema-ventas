@@ -5,7 +5,7 @@
 package com.batteryworkshop.view;
 
 import com.batteryworkshop.view.modal.FrmGestionarPermiso;
-import com.batteryworkshop.controller.RolController;
+import com.batteryworkshop.model.dao.RolDao;
 import com.batteryworkshop.model.Rol;
 import com.batteryworkshop.properties.RenderTable;
 import com.batteryworkshop.view.modal.FrmRegistrarRol;
@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmGestionarRol extends javax.swing.JInternalFrame {
 
-    public static RolController rolC = new RolController();
+    public static RolDao rolC = new RolDao();
 
     /**
      * Creates new form FrmGestionarRol

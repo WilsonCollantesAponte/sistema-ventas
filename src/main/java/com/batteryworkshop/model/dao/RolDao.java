@@ -1,47 +1,60 @@
-package com.batteryworkshop.controller;
+package com.batteryworkshop.model.dao;
 
+import com.batteryworkshop.model.Conexion;
 import com.batteryworkshop.interfaces.CRUD;
-import com.batteryworkshop.model.Cliente;
+import com.batteryworkshop.model.Rol;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteController implements CRUD {
+/**
+ *
+ * @author JuniorMiguel
+ */
+public class RolDao implements CRUD {
 
+    //manipular el acceso de datos al modelo
+    //conexcion ha sido un exito o un error
     Conexion estado = new Conexion();
     Connection con;
+    //prepara toda la consulta que enviamos por java
     PreparedStatement ps;
+    //trae todos los resultados que hayamos consultado en la consulta
     ResultSet rs;
+    //poder ejecutar una  consulta
     String sql = "";
-
+    //object puede almacenar cualquier tipo de datos numero,cadenas,booleanos,y de tipo objeto(Rol)
+    //parse implicito son los que no existen (int)-- explicito strings
     @Override
     public List<Object> listar() {
 
+        //nos trae toda la lista de la tabla rol
         List lista = new ArrayList<>();
-        sql = "SELECT * FROM cliente ORDER BY clienteID DESC";
-
+        sql = "select *from rol Order By descripcion desc";
         try {
-
             con = estado.Conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-
+            //pregunta si aún hay regitros 
             while (rs.next()) {
+                //formas de imprimer los datos metodos set y get
+//                Rol rol = new Rol();
+//                rol.setRolId(rs.getInt(1));
+//                rol.setDescripcion(rs.getString(2));
+//                lista.add(rol);
+//                
+//                //2do con los constructores
+//                 rol = new Rol(rs.getInt(1), rs.getString(2));
+//                 lista.add(rol);
 
-                lista.add(new Cliente(
-                        rs.getInt(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6),
-                        rs.getBoolean(7))
-                );
+                //3ro 
+                lista.add(new Rol(rs.getInt(1),
+                        rs.getString(2)));
 
             }
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace(System.err);
+
         } finally {
             try {
                 if (con != null) {
@@ -53,7 +66,7 @@ public class ClienteController implements CRUD {
                 if (rs != null) {
                     rs.close();
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace(System.err);
             }
         }
@@ -63,27 +76,20 @@ public class ClienteController implements CRUD {
 
     @Override
     public void registrar(Object obj) throws Exception {
-
-        Cliente cliente = (Cliente) obj;
-        sql = "insert into cliente(dni,nombres,apellidos,correo,telefono,estado)\n"
-                + "values(?,?,?,?,?,?)";
+        Rol rol = (Rol) obj;
+        sql = "insert into rol(descripcion) values(?);";
 
         try {
 
             con = estado.Conectar();
             ps = con.prepareStatement(sql);
-            ps.setString(1, cliente.getDocumento());
-            ps.setString(2, cliente.getNombres());
-            ps.setString(3, cliente.getApellidos());
-            ps.setString(4, cliente.getCorreo());
-            ps.setString(5, cliente.getTelefono());
-            ps.setBoolean(6, cliente.isEstado());
+            ps.setString(1, rol.getDescripcion());
             ps.executeUpdate();
 
-        } catch (SQLException pe) {
-            throw new Exception("Ya existe El cliente");
-        } catch (Exception e) {
-            e.printStackTrace(System.err);
+        } catch (SQLException e) {
+            throw new Exception("Ya existe El rol");
+        } catch (Exception p) {
+            p.printStackTrace(System.err);
         } finally {
             try {
                 if (con != null) {
@@ -101,28 +107,20 @@ public class ClienteController implements CRUD {
 
     @Override
     public void editar(Object obj) throws Exception {
-
-        Cliente cliente = (Cliente) obj;
-        sql = "update cliente set dni=?,nombres=?,apellidos=?,correo=?,telefono=?,estado=?"
-                + " where clienteID = ?";
-
+        Rol rol = (Rol) obj;
+        sql = "update rol set descripcion=? where rolId=?;";
         try {
 
             con = estado.Conectar();
             ps = con.prepareStatement(sql);
-            ps.setString(1, cliente.getDocumento());
-            ps.setString(2, cliente.getNombres());
-            ps.setString(3, cliente.getApellidos());
-            ps.setString(4, cliente.getCorreo());
-            ps.setString(5, cliente.getTelefono());
-            ps.setBoolean(6, cliente.isEstado());
-            ps.setInt(7, cliente.getClienteId());
+            ps.setString(1, rol.getDescripcion());
+            ps.setInt(2, rol.getRolId());
             ps.executeUpdate();
 
-        } catch (SQLException pe) {
-            throw new Exception("Ya existe El cliente");
-        } catch (Exception e) {
-            e.printStackTrace(System.err);
+        } catch (SQLException e) {
+            throw new Exception("Ya existe El rol");
+        } catch (Exception p) {
+            p.printStackTrace(System.err);
         } finally {
             try {
                 if (con != null) {
@@ -140,19 +138,16 @@ public class ClienteController implements CRUD {
 
     @Override
     public void eliminar(Object obj) throws Exception {
-
-        sql = "delete from cliente where clienteID = " + (int) obj;
-
+        sql = "delete from rol where rolID = " + (int) obj;
         try {
-
             con = estado.Conectar();
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
 
-        } catch (SQLException pe) {
-            throw new Exception("No se puede eliimnar  este cliente");
-        } catch (Exception e) {
-            e.printStackTrace(System.err);
+        } catch (SQLException e) {
+            throw new Exception("No Se Puede Eliminar Este rol Pertenece a un Usuario");
+        } catch (Exception p) {
+            p.printStackTrace(System.err);
         } finally {
             try {
                 if (con != null) {
@@ -165,13 +160,11 @@ public class ClienteController implements CRUD {
                 e.printStackTrace(System.err);
             }
         }
-
     }
 
     @Override
     public Object obtenerObjecto(Object obj) {
-
-        sql = "select * from cliente where clienteID = " + (int) obj;
+        sql = "select * from rol where rolID = " + (int) obj;
 
         try {
 
@@ -181,14 +174,9 @@ public class ClienteController implements CRUD {
 
             if (rs.next()) {
 
-                return new Cliente(
+                return new Rol(
                         rs.getInt(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6),
-                        rs.getBoolean(7)
+                        rs.getString(2)
                 );
 
             }
@@ -211,41 +199,33 @@ public class ClienteController implements CRUD {
             }
         }
 
-        return new Cliente();
+        return new Rol();
     }
 
     @Override
     public List<Object> listar(Object obj) {
 
-        List lista = new ArrayList();
-        sql = "select * from cliente \n"
-                + "where dni  like '%" + obj.toString() + "%' \n"
-                + "or nombres like '%" + obj.toString() + "%' \n"
-                + "or apellidos like '" + obj.toString() + "%'";
+         List lista = new ArrayList();
+        sql = "select * from rol where descripcion  like '%"+obj.toString()+"%'";
 
         try {
 
             con = estado.Conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-
+            
             while (rs.next()) {
-
-                lista.add(new Cliente(
+                          
+                lista.add(new Rol(
                         rs.getInt(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6),
-                        rs.getBoolean(7)
+                        rs.getString(2)
                 ));
-
+                
             }
 
         } catch (SQLException e) {
             e.printStackTrace(System.err);
-        } finally {
+        }finally {
             try {
                 if (con != null) {
                     con.close();
@@ -262,7 +242,46 @@ public class ClienteController implements CRUD {
         }
 
         return lista;
+    }  
+    
+    public Object obtenerObjecto(String descripcion) {
+        
+        sql = "select * from rol where descripcion = '"+descripcion+"'";
 
+        try {
+
+            con = estado.Conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                          
+                return new Rol(
+                        rs.getInt(1),
+                        rs.getString(2)
+                );
+                
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(System.err);
+            }
+        }
+
+        return new Rol();
     }
 
 }

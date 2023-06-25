@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package com.batteryworkshop.view.modal;
-import com.batteryworkshop.Controller.CategoriaController;
+import com.batteryworkshop.model.dao.CategoriaDao;
 import com.batteryworkshop.model.Categoria;
 import com.batteryworkshop.view.FrmGestionarCategoria;
 import javax.swing.JOptionPane;
@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public final class FrmRegistrarCategoria extends javax.swing.JInternalFrame {
 
-    CategoriaController categoriaC = new CategoriaController();
+    CategoriaDao categoriaC = new CategoriaDao();
     public static int idCategoria = 0; // se utiliza para poder modificar y de tipo estatico para que los valors no cambien
     //cierre o no cierre el valor nunca va a cambiar
     public static boolean vista = false;

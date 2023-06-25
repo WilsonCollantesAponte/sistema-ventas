@@ -3,12 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package com.batteryworkshop.view;
-
-
-import com.batteryworkshop.model.dao.CategoriaDao;
-import com.batteryworkshop.model.Categoria;
+import com.batteryworkshop.model.dao.ProductoDao;
+import com.batteryworkshop.model.Producto;
 import com.batteryworkshop.properties.RenderTable;
-import com.batteryworkshop.view.modal.FrmRegistrarCategoria;
+import com.batteryworkshop.view.modal.FrmRegistrarProducto;
 import java.awt.Color;
 import java.awt.Image;
 import java.util.List;
@@ -23,51 +21,53 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author JuniorMiguel
  */
-public class FrmGestionarCategoria extends javax.swing.JInternalFrame {
+public class FrmGestionarProducto extends javax.swing.JInternalFrame {
 
-    public static CategoriaDao categoriaC = new CategoriaDao();
+    public static ProductoDao productoC= new ProductoDao();
 
     /**
      * Creates new form FrmGestionarCategoria
      */
-    public FrmGestionarCategoria() {
+    public FrmGestionarProducto() {
         initComponents();
         listar("");
     }
 
     public static void listar(String texto) {
         //agregar columnas
-        String[] columns = {"#", "Descripcion", "", "", ""};
+        String columnas[] = {"#", "Codigo", "Nombre","Descripcion", "Categoria", "Stock","Precio Venta","Precio Compra","Estado","","", ""};
         //me va ha permitir crear una tabla sombra  de cualquier clase y traer mis datos 
         DefaultTableModel modelo = new DefaultTableModel();
-        for (String columnas : columns) {
-            modelo.addColumn(columnas);
+        for (String columns : columnas) {
+            modelo.addColumn(columns);
         }
         //1 creo una lista
 //        List lista;
         //2 traigo los datos de mi lista
-//        Categoria categoria;
+//        Categoria rol;
         //3 creo un objeto
 //        Object []  objeto = new Object[6];
 //        //4 agregar las filas
 //        for (int i = 0; i <lista.size(); i++) {
-//            categoria=(Categoria) lista.get(i);
-//            objeto[0]=categoria.getCategoriaId();
-//            objeto[1]=categoria.getDescripcion();
+//            rol=(Categoria) lista.get(i);
+//            objeto[0]=rol.getCategoriaId();
+//            objeto[1]=rol.getDescripcion();
 //            modelo.addRow(objeto);
 //        }
 
         List lista;
-        Categoria categoria;
+        Producto producto;
 
         if (txtBuscar.getText().length() == 0) {
-            lista = categoriaC.listar();
+            lista = productoC.listar();
 
         } else {
-            lista = categoriaC.listar(texto);
+            lista = productoC.listar(texto);
         }
+        //lista.forEach((x)->{});funcion lamda
+        
         for (Object obj : lista) {
-            categoria = (Categoria) obj;
+            producto = (Producto) obj;
 
             ImageIcon iconoModi = new ImageIcon("src/main/java/com/batteryworkshop/image/editar.png");
             Icon btnModificar = new ImageIcon(iconoModi.getImage().getScaledInstance(22, 22, Image.SCALE_DEFAULT));
@@ -85,7 +85,6 @@ public class FrmGestionarCategoria extends javax.swing.JInternalFrame {
             botonEliminar.setBorder(null);
             botonEliminar.setBackground(new Color(223, 68, 83));
 
-
             ImageIcon iconoVer = new ImageIcon("src/main/java/com/batteryworkshop/image/ver.png");
             Icon btnVer = new ImageIcon(iconoVer.getImage().getScaledInstance(22, 22, Image.SCALE_DEFAULT));
             JButton botonVer = new JButton("", btnVer);
@@ -95,8 +94,15 @@ public class FrmGestionarCategoria extends javax.swing.JInternalFrame {
             botonVer.setBackground(new Color(41, 143, 96));
 
             modelo.addRow(new Object[]{
-                categoria.getCategoriaId(),
-                categoria.getDescripcion(),
+                producto.getProductoId(),
+                producto.getCodigo(),
+                producto.getNombre(),
+                producto.getDescripcion(),
+                producto.getCategoria().toString(),
+                producto.getStock(),
+                producto.getPrecioCompra(),
+                producto.getPrecioVenta(),
+                producto.isEstado()?"ACTIVO":"INACTIVO",
                 botonModificar,
                 botonEliminar,
                 botonVer
@@ -109,10 +115,17 @@ public class FrmGestionarCategoria extends javax.swing.JInternalFrame {
         tbListado.getColumnModel().getColumn(0).setMaxWidth(0);
         tbListado.getColumnModel().getColumn(0).setMinWidth(0);
         tbListado.getColumnModel().getColumn(0).setPreferredWidth(0);
-        tbListado.getColumnModel().getColumn(1).setPreferredWidth(480);
-        tbListado.getColumnModel().getColumn(2).setPreferredWidth(30);
-        tbListado.getColumnModel().getColumn(3).setPreferredWidth(30);
-        tbListado.getColumnModel().getColumn(4).setPreferredWidth(30);
+        tbListado.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tbListado.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tbListado.getColumnModel().getColumn(3).setPreferredWidth(195);
+        tbListado.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tbListado.getColumnModel().getColumn(5).setPreferredWidth(50);
+        tbListado.getColumnModel().getColumn(6).setPreferredWidth(80);
+        tbListado.getColumnModel().getColumn(7).setPreferredWidth(80);
+        tbListado.getColumnModel().getColumn(8).setPreferredWidth(90);
+        tbListado.getColumnModel().getColumn(9).setPreferredWidth(30);
+        tbListado.getColumnModel().getColumn(10).setPreferredWidth(30);
+        tbListado.getColumnModel().getColumn(11).setPreferredWidth(30);
         lblTotal.setText("" + tbListado.getRowCount());
     }
 
@@ -136,7 +149,7 @@ public class FrmGestionarCategoria extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Gestionar Categoria");
+        setTitle("Gestionar Producto");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -184,7 +197,7 @@ public class FrmGestionarCategoria extends javax.swing.JInternalFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 599, Short.MAX_VALUE)
                         .addComponent(cmdAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -221,7 +234,7 @@ public class FrmGestionarCategoria extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -230,7 +243,7 @@ public class FrmGestionarCategoria extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAgregarActionPerformed
-            FrmMenuPrincipal.centrarVentana(new FrmRegistrarCategoria());
+        FrmMenuPrincipal.centrarVentana(new FrmRegistrarProducto());
 
     }//GEN-LAST:event_cmdAgregarActionPerformed
 
@@ -256,17 +269,17 @@ public class FrmGestionarCategoria extends javax.swing.JInternalFrame {
                 switch (boton.getName()) {
                     case "btnEliminar" -> {
                         if (filas == 0) {//si no elije ninguna fila
-                            JOptionPane.showMessageDialog(null, "Dato Inexistente");
+                            JOptionPane.showMessageDialog(null, "Datos Inexistente");
 //                          
                         } else {
                             String valor = String.valueOf(tbListado.getValueAt(fila, 1));
 
-                            int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar al Categoria " + valor + "?", "Confirmar", 2);
+                            int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el Producto " + valor + "?", "Confirmar", 2);
                             if (opcion == 0) {
 
                                 try {
-                                    categoriaC.eliminar(id);
-                                    JOptionPane.showMessageDialog(null, "Categoria Eliminado Correctamente");
+                                    productoC.eliminar(id);
+                                    JOptionPane.showMessageDialog(null, "Producto Eliminado Correctamente");
 //                                    AlertaBien alertaBien = new AlertaBien("Mensaje", "Categoria eliminado correctamente!");
                                     listar("");
                                 } catch (Exception ex) {
@@ -284,23 +297,26 @@ public class FrmGestionarCategoria extends javax.swing.JInternalFrame {
                     case "btnModificar" -> {
                         if (filas == 0) {//si no elije ninguna fila
 //                            Alerta alerta = new Alerta("Alerta", "Debe seleccionar un Categoria");
-                            JOptionPane.showMessageDialog(null, "Debe Seleccionar Un Categoria");
+                            JOptionPane.showMessageDialog(null, "Debe Seleccionar Un Producto");
                         } else {
-                            FrmRegistrarCategoria.idCategoria = id;
-                            FrmMenuPrincipal.centrarVentana(new FrmRegistrarCategoria());
-                            FrmRegistrarCategoria.cmdGrabar.setText("Modificar");
+                            FrmRegistrarProducto.idProducto = id;
+                            FrmMenuPrincipal.centrarVentana(new FrmRegistrarProducto());
+                            FrmRegistrarProducto.cmdGrabar.setText("Modificar");
 
                         }
                     }
-
+                    case "btnPermiso" -> {
+//                        FrmGestionarPermiso.idCategoria = id;
+//                        FrmMenuPrincipal.centrarVentana(new FrmGestionarPermiso());
+                    }
                     case "btnVer" -> {
                         if (filas == 0) {
 //                            Alerta alerta = new Alerta("Alerta", "Debe seleccionar un tipo");
-                            JOptionPane.showMessageDialog(null, "Debe Seleccionar Un Categoria");
+                            JOptionPane.showMessageDialog(null, "Debe Seleccionar Un Producto");
                         } else {
-                            FrmRegistrarCategoria.vista = true;
-                            FrmRegistrarCategoria.idCategoria = id;
-                            FrmMenuPrincipal.centrarVentana(new FrmRegistrarCategoria());
+                            FrmRegistrarProducto.vista = true;
+                            FrmRegistrarProducto.idProducto = id;
+                            FrmMenuPrincipal.centrarVentana(new FrmRegistrarProducto());
                         }
                     }
                 }

@@ -4,7 +4,7 @@
  */
 package com.batteryworkshop.view.modal;
 
-import com.batteryworkshop.controller.ProveedorController;
+import com.batteryworkshop.model.dao.ProveedorDao;
 import com.batteryworkshop.model.Proveedor;
 import com.batteryworkshop.view.FrmGestionarProveedor;
 import java.util.List;
@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class FrmRegistrarProveedor extends javax.swing.JInternalFrame {
 
-    ProveedorController ProveedorC = new ProveedorController();
+    ProveedorDao ProveedorC = new ProveedorDao();
     public static int idProveedor = 0;
     public static boolean vista = false;
 

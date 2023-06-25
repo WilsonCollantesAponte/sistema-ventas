@@ -4,7 +4,7 @@
  */
 package com.batteryworkshop.view.modal;
 
-import com.batteryworkshop.controller.ClienteController;
+import com.batteryworkshop.model.dao.ClienteDao;
 import com.batteryworkshop.model.Cliente;
 import com.batteryworkshop.view.FrmGestionarCliente;
 import java.util.List;
@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class FrmRegistrarCliente extends javax.swing.JInternalFrame {
 
-    ClienteController ClienteC = new ClienteController();
+    ClienteDao ClienteC = new ClienteDao();
     public static int idCliente = 0;
     public static boolean vista = false;
 
@@ -50,6 +50,7 @@ public class FrmRegistrarCliente extends javax.swing.JInternalFrame {
             txtCorreo.setText(ClienteV.getCorreo());
             txtTelefono.setText(ClienteV.getTelefono());
             cmbEstado.setSelectedIndex(0);
+//            cmbEstado.getSelectedItem().toString();
         }
 
     }

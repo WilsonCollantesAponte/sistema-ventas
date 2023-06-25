@@ -4,7 +4,7 @@
  */
 package com.batteryworkshop.view.modal;
 
-import com.batteryworkshop.controller.RolController;
+import com.batteryworkshop.model.dao.RolDao;
 import com.batteryworkshop.model.Rol;
 import com.batteryworkshop.view.FrmGestionarRol;
 import javax.swing.JOptionPane;
@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public final class FrmRegistrarRol extends javax.swing.JInternalFrame {
 
-    RolController rolC = new RolController();
+    RolDao rolC = new RolDao();
     public static int idRol = 0; // se utiliza para poder modificar y de tipo estatico para que los valors no cambien
     //cierre o no cierre el valor nunca va a cambiar
     public static boolean vista = false;

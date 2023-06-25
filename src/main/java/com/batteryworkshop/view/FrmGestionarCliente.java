@@ -5,7 +5,7 @@
 package com.batteryworkshop.view;
 
 
-import com.batteryworkshop.controller.ClienteController;
+import com.batteryworkshop.model.dao.ClienteDao;
 import com.batteryworkshop.model.Cliente;
 import com.batteryworkshop.properties.RenderTable;
 import com.batteryworkshop.view.modal.FrmRegistrarCliente;
@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmGestionarCliente extends javax.swing.JInternalFrame {
 
-    public static ClienteController clientearioC= new ClienteController();
+    public static ClienteDao clientearioC= new ClienteDao();
 
     /**
      * Creates new form FrmGestionarRol

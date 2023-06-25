@@ -1,4 +1,4 @@
-package com.batteryworkshop.controller;
+package com.batteryworkshop.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

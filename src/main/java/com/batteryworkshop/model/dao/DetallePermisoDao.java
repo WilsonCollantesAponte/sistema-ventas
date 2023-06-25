@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.batteryworkshop.controller;
+package com.batteryworkshop.model.dao;
 
+import com.batteryworkshop.model.Conexion;
 import com.batteryworkshop.model.DetallePermiso;
 import com.batteryworkshop.model.Permiso;
 import com.batteryworkshop.model.Rol;
@@ -18,7 +19,7 @@ import java.util.List;
  *
  * @author JuniorMiguel
  */
-public class DetallePermisoController {
+public class DetallePermisoDao {
 
     Conexion estado = new Conexion();
     Connection con;

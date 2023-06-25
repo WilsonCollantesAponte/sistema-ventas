@@ -4,7 +4,7 @@
  */
 package com.batteryworkshop.view.modal;
 
-import com.batteryworkshop.controller.DetallePermisoController;
+import com.batteryworkshop.model.dao.DetallePermisoDao;
 import com.batteryworkshop.model.DetallePermiso;
 import com.batteryworkshop.model.Permiso;
 import javax.swing.JOptionPane;
@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class FrmGestionarPermiso extends javax.swing.JInternalFrame {
 
-    DetallePermisoController detalleC = new DetallePermisoController();
+    DetallePermisoDao detalleC = new DetallePermisoDao();
     public static int idRol;
 
     /**

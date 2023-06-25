@@ -4,8 +4,8 @@
  */
 package com.batteryworkshop.view.modal;
 
-import com.batteryworkshop.controller.RolController;
-import com.batteryworkshop.controller.UsuarioController;
+import com.batteryworkshop.model.dao.RolDao;
+import com.batteryworkshop.model.dao.UsuarioDao;
 import com.batteryworkshop.model.Rol;
 import com.batteryworkshop.model.Usuario;
 import com.batteryworkshop.view.FrmGestionarUsuario;
@@ -19,8 +19,8 @@ import javax.swing.JOptionPane;
  */
 public class FrmRegistrarUsuario extends javax.swing.JInternalFrame {
 
-    UsuarioController usuarioC = new UsuarioController();
-    RolController rolC = new RolController();
+    UsuarioDao usuarioC = new UsuarioDao();
+    RolDao rolC = new RolDao();
     SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
     public static int idUsuario = 0;
     public static boolean vista = false;

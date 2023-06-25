@@ -5,7 +5,7 @@
 package com.batteryworkshop.view;
 
 
-import com.batteryworkshop.controller.UsuarioController;
+import com.batteryworkshop.model.dao.UsuarioDao;
 import com.batteryworkshop.model.Rol;
 import com.batteryworkshop.model.Usuario;
 import com.batteryworkshop.properties.RenderTable;
@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmGestionarUsuario extends javax.swing.JInternalFrame {
 
-    public static UsuarioController usuarioC= new UsuarioController();
+    public static UsuarioDao usuarioC= new UsuarioDao();
 
     /**
      * Creates new form FrmGestionarRol
