@@ -5,7 +5,6 @@
 package com.batteryworkshop.view;
 
 import com.batteryworkshop.model.Usuario;
-import com.batteryworkshop.view.modal.FrmRegistrarCategoria;
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
 
@@ -22,9 +21,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
      */
     public FrmMenuPrincipal() {
         initComponents();
-//      mnuUsuario.setText(usuario.getNombres());
+        mnuUsuario.setText(usuario.getNombres());
         this.setExtendedState(6);
-        cargarUsuario();
+//        cargarUsuario();
     }
 
     private void cargarUsuario() {
@@ -34,17 +33,17 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         int indiceNombre = nombre.indexOf(" ");
         int indiceApellidos = apellidos.indexOf(" ");
         if (indiceNombre == -1) {
-            nombreActual+=nombre + " ";
+            nombreActual += nombre + " ";
         } else {
-            nombreActual+=nombre.substring(0, indiceNombre) + " ";
+            nombreActual += nombre.substring(0, indiceNombre) + " ";
         }
-        
-         if (indiceApellidos == -1) {
-            nombreActual+=apellidos + " ";
+
+        if (indiceApellidos == -1) {
+            nombreActual += apellidos + " ";
         } else {
-            nombreActual+=nombre.substring(0, indiceApellidos) + " ";
+            nombreActual += nombre.substring(0, indiceApellidos) + " ";
         }
-         mnuUsuario.setText(nombreActual);
+        mnuUsuario.setText(nombreActual);
     }
 
     public static void centrarVentana(JInternalFrame frame) {

@@ -8,7 +8,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class UsuarioDao implements CRUD {
 
     RolDao rolC = new RolDao();
@@ -86,7 +85,7 @@ public class UsuarioDao implements CRUD {
             ps.setString(5, usuario.getClave());
             ps.setString(6, usuario.getTelefono());
             ps.setBoolean(7, usuario.isEstado());
-            ps.setDate(8, usuario.getFechaNacimiento());                    
+            ps.setDate(8, usuario.getFechaNacimiento());
             ps.setInt(9, usuario.getRol().getRolId());
             ps.executeUpdate();
 
@@ -120,16 +119,16 @@ public class UsuarioDao implements CRUD {
 
             con = estado.Conectar();
             ps = con.prepareStatement(sql);
-             ps.setString(1, usuario.getDocumento());
+            ps.setString(1, usuario.getDocumento());
             ps.setString(2, usuario.getNombres());
             ps.setString(3, usuario.getApellidos());
             ps.setString(4, usuario.getCorreo());
             ps.setString(5, usuario.getClave());
-            ps.setString(6, usuario.getTelefono());           
+            ps.setString(6, usuario.getTelefono());
 //            ps.setBoolean(7, usuario.isEstado());
-            ps.setDate(7, usuario.getFechaNacimiento());                    
+            ps.setDate(7, usuario.getFechaNacimiento());
             ps.setInt(8, usuario.getRol().getRolId());
-             ps.setInt(9, usuario.getUsuarioId());
+            ps.setInt(9, usuario.getUsuarioId());
             ps.executeUpdate();
 
         } catch (SQLException pe) {
@@ -195,7 +194,7 @@ public class UsuarioDao implements CRUD {
             if (rs.next()) {
 
                 return new Usuario(
-                       rs.getInt(1),
+                        rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
@@ -235,9 +234,9 @@ public class UsuarioDao implements CRUD {
 
         List lista = new ArrayList();
         sql = "select * from usuario \n"
-                + "where dni  like '%"+obj.toString()+"%' \n"
-                + "or nombres like '%"+obj.toString()+"%' \n"
-                + "or apellidos like '"+obj.toString()+"%'";
+                + "where dni  like '%" + obj.toString() + "%' \n"
+                + "or nombres like '%" + obj.toString() + "%' \n"
+                + "or apellidos like '" + obj.toString() + "%'";
 
         try {
 
@@ -283,10 +282,10 @@ public class UsuarioDao implements CRUD {
         return lista;
 
     }
-    
-    public Object iniciarSesion(String documento,String clave) {
 
-        sql = "select * from usuario where dni= '"+documento+"'  and clave='"+clave+"'";
+    public Object iniciarSesion(String documento, String clave) {
+
+        sql = "select * from usuario where dni = '" + documento + "' and clave = '" + clave + "'";
 
         try {
 

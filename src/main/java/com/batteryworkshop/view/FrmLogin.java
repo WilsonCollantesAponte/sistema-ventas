@@ -15,7 +15,9 @@ import javax.swing.JOptionPane;
  * @author JuniorMiguel
  */
 public class FrmLogin extends javax.swing.JFrame {
+
     UsuarioDao usuarioC = new UsuarioDao();
+
     /**
      * Creates new form FrmLogin
      */
@@ -23,30 +25,32 @@ public class FrmLogin extends javax.swing.JFrame {
         initComponents();
         //centrar el formulario al centro null(no tenemos ni derecha ni ixzquierda)
         setLocationRelativeTo(null);
-     }
-    public void ingresar(){
-        try {
-            Usuario usuario = (Usuario)usuarioC.iniciarSesion(txtDni.getText(),txtPaswoord.getText());
-            if(txtDni.getText().length()!=0 || txtPaswoord.getText().length()!=0){
-            
-                if(txtDni.getText()!=null){
-                  FrmMenuPrincipal.usuario=usuario;
-                  FrmMenuPrincipal frm = new FrmMenuPrincipal();
-                  frm.setVisible(true);
-                  JOptionPane.showMessageDialog(null,"Hola " + usuario.getNombres() + " Bienvenido Al Sistema!","Login Succefull", 1);
-                  dispose();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Credenciales Incorrectas Ok..!");  
-                }
-            }else{
-             JOptionPane.showMessageDialog(null,"Los Datos Están Vacios");
-            }
-               
-        } catch (Exception e) {
-            
+    }
+
+    public void ingresar() {
         
+        try {
+            Usuario usuario = (Usuario) usuarioC.iniciarSesion(txtDni.getText(), txtPaswoord.getText());
+            //valido si las cajas están vacias
+            if (txtDni.getText().length() != 0 || txtPaswoord.getText().length() != 0) {
+                //valido las credenciales
+                if (usuario.getDocumento() != null) {
+                    FrmMenuPrincipal.usuario = usuario;
+                    FrmMenuPrincipal frm = new FrmMenuPrincipal();
+                    frm.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Hola " + usuario.getNombres() + " Bienvenido Al Sistema!", "Login Succefull", 1);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Credenciales Incorrectas Ok..!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Hay Campos Vacios");
+            }
+        } catch (Exception e) {
+
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -293,7 +297,7 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-            ingresar();
+        ingresar();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void txtDniMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDniMousePressed
@@ -330,13 +334,13 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
         // TODO add your handling code here:
-        
-        
+
+
     }//GEN-LAST:event_txtDniKeyTyped
 
     private void txtPaswoordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPaswoordKeyTyped
-        char enter=evt.getKeyChar();
-        if (enter==KeyEvent.VK_ENTER){
+        char enter = evt.getKeyChar();
+        if (enter == KeyEvent.VK_ENTER) {
             ingresar();
         }
     }//GEN-LAST:event_txtPaswoordKeyTyped
