@@ -30,11 +30,11 @@ public class FrmLogin extends javax.swing.JFrame {
     public void ingresar() {
         
         try {
-            Usuario usuario = (Usuario) usuarioC.iniciarSesion(txtDni.getText(), txtPaswoord.getText());
+            Usuario usuario = (Usuario) usuarioC.iniciarSesion(txtDocumento.getText(), txtPaswoord.getText());
             //valido si las cajas están vacias
-            if (txtDni.getText().length() != 0 || txtPaswoord.getText().length() != 0) {
+            if (txtDocumento.getText().length() != 0 || txtPaswoord.getText().length() != 0) {
                 //valido las credenciales
-                if (usuario.getDocumento() != null) {
+                if (usuario.getDocumento()!= null) {
                     FrmMenuPrincipal.usuario = usuario;
                     FrmMenuPrincipal frm = new FrmMenuPrincipal();
                     frm.setVisible(true);
@@ -72,7 +72,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtDni = new javax.swing.JTextField();
+        txtDocumento = new javax.swing.JTextField();
         txtPaswoord = new javax.swing.JPasswordField();
         jToggleButton1 = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -167,17 +167,17 @@ public class FrmLogin extends javax.swing.JFrame {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/password.png"))); // NOI18N
 
-        txtDni.setForeground(new java.awt.Color(204, 204, 204));
-        txtDni.setText("Ingrese su nombre de usuario");
-        txtDni.setBorder(null);
-        txtDni.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtDocumento.setForeground(new java.awt.Color(204, 204, 204));
+        txtDocumento.setText("Ingrese su nombre de usuario");
+        txtDocumento.setBorder(null);
+        txtDocumento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtDniMousePressed(evt);
+                txtDocumentoMousePressed(evt);
             }
         });
-        txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDniKeyTyped(evt);
+                txtDocumentoKeyTyped(evt);
             }
         });
 
@@ -232,7 +232,7 @@ public class FrmLogin extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPaswoord)
-                            .addComponent(txtDni)
+                            .addComponent(txtDocumento)
                             .addComponent(jSeparator1))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -247,7 +247,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(48, 48, 48)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtDni)
+                    .addComponent(txtDocumento)
                     .addComponent(jLabel6))
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -300,26 +300,26 @@ public class FrmLogin extends javax.swing.JFrame {
         ingresar();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    private void txtDniMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDniMousePressed
-        if (txtDni.getText().equals("Ingrese su nombre de usuario")) {
-            txtDni.setText("");
-            txtDni.setForeground(Color.black);
+    private void txtDocumentoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDocumentoMousePressed
+        if (txtDocumento.getText().equals("Ingrese su nombre de usuario")) {
+            txtDocumento.setText("");
+            txtDocumento.setForeground(Color.black);
         }
         if (String.valueOf(txtPaswoord.getPassword()).isEmpty()) {
             txtPaswoord.setText("********");
             txtPaswoord.setForeground(Color.gray);
         }
 
-    }//GEN-LAST:event_txtDniMousePressed
+    }//GEN-LAST:event_txtDocumentoMousePressed
 
     private void txtPaswoordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPaswoordMousePressed
         if (String.valueOf(txtPaswoord.getPassword()).equals("********")) {
             txtPaswoord.setText("");
             txtPaswoord.setForeground(Color.black);
         }
-        if (txtDni.getText().isEmpty()) {
-            txtDni.setText("Ingrese su nombre de usuario");
-            txtDni.setForeground(Color.gray);
+        if (txtDocumento.getText().isEmpty()) {
+            txtDocumento.setText("Ingrese su nombre de usuario");
+            txtDocumento.setForeground(Color.gray);
         }
 
     }//GEN-LAST:event_txtPaswoordMousePressed
@@ -332,11 +332,11 @@ public class FrmLogin extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_lblSalirMouseClicked
 
-    private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
+    private void txtDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDocumentoKeyTyped
         // TODO add your handling code here:
 
 
-    }//GEN-LAST:event_txtDniKeyTyped
+    }//GEN-LAST:event_txtDocumentoKeyTyped
 
     private void txtPaswoordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPaswoordKeyTyped
         char enter = evt.getKeyChar();
@@ -398,7 +398,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblMinimizar;
     private javax.swing.JLabel lblSalir;
-    private javax.swing.JTextField txtDni;
+    private javax.swing.JTextField txtDocumento;
     private javax.swing.JPasswordField txtPaswoord;
     // End of variables declaration//GEN-END:variables
 }

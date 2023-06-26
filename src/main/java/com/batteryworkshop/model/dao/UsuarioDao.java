@@ -71,7 +71,7 @@ public class UsuarioDao implements CRUD {
     public void registrar(Object obj) throws Exception {
 
         Usuario usuario = (Usuario) obj;
-        sql = "insert into usuario(dni,nombres,apellidos,correo,clave,telefono,estado,fechaNacimiento,rolID)\n"
+        sql = "insert into usuario(documento,nombres,apellidos,correo,clave,telefono,estado,fechaNacimiento,rolID)\n"
                 + "values(?,?,?,?,?,?,?,?,?)";
 
         try {
@@ -112,7 +112,7 @@ public class UsuarioDao implements CRUD {
     public void editar(Object obj) throws Exception {
 
         Usuario usuario = (Usuario) obj;
-        sql = "update usuario set dni=?,nombres=?,apellidos=?,correo=?,clave=?,telefono=?,fechaNacimiento=?,rolID=?"
+        sql = "update usuario set documento=?,nombres=?,apellidos=?,correo=?,clave=?,telefono=?,fechaNacimiento=?,rolID=?"
                 + " where usuarioID = ?";
 
         try {
@@ -234,7 +234,7 @@ public class UsuarioDao implements CRUD {
 
         List lista = new ArrayList();
         sql = "select * from usuario \n"
-                + "where dni  like '%" + obj.toString() + "%' \n"
+                + "where documento  like '%" + obj.toString() + "%' \n"
                 + "or nombres like '%" + obj.toString() + "%' \n"
                 + "or apellidos like '" + obj.toString() + "%'";
 
@@ -285,7 +285,7 @@ public class UsuarioDao implements CRUD {
 
     public Object iniciarSesion(String documento, String clave) {
 
-        sql = "select * from usuario where dni = '" + documento + "' and clave = '" + clave + "'";
+        sql = "select * from usuario where documento = '" + documento + "' and clave = '" + clave + "'";
 
         try {
 

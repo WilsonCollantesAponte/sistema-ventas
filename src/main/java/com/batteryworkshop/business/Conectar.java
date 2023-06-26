@@ -18,25 +18,11 @@ public class Conectar {
 //            rol = (Rol)lista.get(i);
 //            System.out.println(rol.getRolId() + " " + rol.getDescripcion());
 //        }
-        //Pruebas
-//        String nombreActual = "";
-//        String nombre = usuario.getNombres().trim();
-//        String apellidos = usuario.getApellidos().trim();
-//        int indiceNombre = nombre.indexOf(" ");
-//        int indiceApellidos = apellidos.indexOf(" ");
-//        if (indiceNombre == 1) {
-//            nombreActual+=nombre + " ";
-//        } else {
-//            nombreActual += nombre.substring(0, indiceNombre) + " ";
-//        }
-//        
-//         if (indiceApellidos == 1) {
-//            nombreActual+=apellidos + " ";
-//        } else {
-//            nombreActual += apellidos.substring(0, indiceApellidos) + " ";
-//        }
-//
-//        System.out.println(nombreActual);
-//
+        //Pruebas capturar 1er y segundo nombre
+        String nombre="junior";
+        int indiceNombre=nombre.indexOf(" ");
+        System.out.println("Indice Posicion N°: " + indiceNombre);
+        System.out.println("Indice " + nombre.substring(0, indiceNombre));
+        
     }
 }

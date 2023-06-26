@@ -20,7 +20,7 @@ import java.util.List;
  * @author JuniorMiguel
  */
 public class DetallePermisoDao {
-
+    RolDao rolC = new RolDao();
     Conexion estado = new Conexion();
     Connection con;
     PreparedStatement ps;
@@ -28,25 +28,26 @@ public class DetallePermisoDao {
     String sql = "";
 
     public DetallePermiso listar(String documento) {
-        DetallePermiso detalleP = new DetallePermiso();
+         DetallePermiso detalleP = new DetallePermiso();
         List permisos = new ArrayList();
-        sql = "select r.rol_id,pe.permiso_id,pe.descripcion from usuario us \n"
-                + "inner join rol r ON us.rol_id = r.rol_id \n"
-                + "inner join detalle_permiso det on det.rol_id = r.rol_id \n"
-                + "inner join permiso pe on pe.permiso_id = det.permiso_id \n"
+        sql = "select r.rolId,pe.permisoId,pe.descripcion from usuario us \n"
+                + "inner join rol r ON us.rolId = r.rolId \n"
+                + "inner join detallePermiso det on det.rolId = r.rolId \n"
+                + "inner join permiso pe on pe.permisoId = det.permisoId \n"
                 + "where us.documento = '" + documento + "'";
 
         try {
+
             con = estado.Conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
+
             while (rs.next()) {
-                //ingresamos un rol y agregamos una lista de permisos 
-                detalleP.setRol(new Rol(rs.getInt(1), rs.getString(2)));
-                permisos.add(new Permiso(rs.getInt(3), rs.getString(4)));
+                detalleP.setRol((Rol) rolC.obtenerObjecto(rs.getInt(1)));
+                permisos.add(new Permiso(rs.getInt(2), rs.getString(3)));
             }
-            //añadimos toda la lista de permisos a un solo rol
             detalleP.setPermiso(permisos);
+
         } catch (SQLException e) {
             e.printStackTrace(System.err);
         } finally {
@@ -64,6 +65,7 @@ public class DetallePermisoDao {
                 e.printStackTrace(System.err);
             }
         }
+
         return detalleP;
 
     }

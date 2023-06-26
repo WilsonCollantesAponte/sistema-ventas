@@ -4,7 +4,11 @@
  */
 package com.batteryworkshop.view;
 
+import com.batteryworkshop.model.DetallePedido;
+import com.batteryworkshop.model.DetallePermiso;
+import com.batteryworkshop.model.Permiso;
 import com.batteryworkshop.model.Usuario;
+import com.batteryworkshop.model.dao.DetallePermisoDao;
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
 
@@ -13,7 +17,7 @@ import javax.swing.JInternalFrame;
  * @author JuniorMiguel
  */
 public class FrmMenuPrincipal extends javax.swing.JFrame {
-
+    DetallePermisoDao dpC= new DetallePermisoDao();
     public static Usuario usuario;//static para navegar de ventana a ventana y enviar datos
 
     /**
@@ -21,29 +25,85 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
      */
     public FrmMenuPrincipal() {
         initComponents();
-        mnuUsuario.setText(usuario.getNombres());
+//        mnuUsuario.setText(usuario.getNombres());
         this.setExtendedState(6);
-//        cargarUsuario();
+        desabilitar_menu();
+        cargar_permisos();
+        cargarUsuario();
+        
     }
-
+//hacer que aparesca el nombre del usuario en el menu principal mnnuUsuario
     private void cargarUsuario() {
         String nombreActual = "";
         String nombre = usuario.getNombres().trim();
         String apellidos = usuario.getApellidos().trim();
-        int indiceNombre = nombre.indexOf(" ");
-        int indiceApellidos = apellidos.indexOf(" ");
-        if (indiceNombre == -1) {
+        int indiceN = nombre.indexOf(" ");
+        int indiceA = apellidos.indexOf(" ");
+        if (indiceA == -1) {
             nombreActual += nombre + " ";
         } else {
-            nombreActual += nombre.substring(0, indiceNombre) + " ";
+//          nombreActual=nombreActual+nombre.substring(0, indiceNombre);
+            nombreActual += nombre.substring(0, indiceN) + " ";
         }
 
-        if (indiceApellidos == -1) {
+        if (indiceN == -1) {
             nombreActual += apellidos + " ";
         } else {
-            nombreActual += nombre.substring(0, indiceApellidos) + " ";
+            nombreActual += apellidos.substring(0, indiceA);
         }
         mnuUsuario.setText(nombreActual);
+
+    }
+
+    private void desabilitar_menu() {
+        mnuAdmin.setVisible(false);
+        mnuCategoria.setVisible(false);
+        mnuCliente.setVisible(false);
+        mnuCompra.setVisible(false);
+        mnuMantenimiento.setVisible(false);
+        mnuProducto.setVisible(false);
+        mnuProveedor.setVisible(false);
+        mnuReporte.setVisible(false);
+        mnuVenta.setVisible(false);
+    }
+    private void cargar_permisos(){
+        DetallePermiso detalleP=dpC.listar(usuario.getDocumento());
+        //lista de persmisos traelos
+        for (Permiso permiso : detalleP.getPermiso()) {
+            switch (permiso.getDesripcion()) {
+                case "mnuAdmin":
+                    mnuAdmin.setVisible(true);
+                    break;
+                case "mnuCategoria":
+                    mnuCategoria.setVisible(true);
+                    break;
+                case "mnuCliente":
+                    mnuCliente.setVisible(true);
+                    break;
+                case "mnuCompra":
+                    mnuCompra.setVisible(true);
+                    break;
+                case "mnuMantenimiento":
+                    mnuMantenimiento.setVisible(true);
+                    break;
+                case "mnuProducto":
+                    mnuProducto.setVisible(true);
+                    break;
+                case "mnuProveedor":
+                    mnuProveedor.setVisible(true);
+                    break;
+                case "mnuReporte":
+                    mnuReporte.setVisible(true);
+                    break;
+                case "mnuVenta":
+                    mnuVenta.setVisible(true);
+                    break;    
+                default:
+                
+                    throw new AssertionError();
+            }
+            
+        }
     }
 
     public static void centrarVentana(JInternalFrame frame) {
