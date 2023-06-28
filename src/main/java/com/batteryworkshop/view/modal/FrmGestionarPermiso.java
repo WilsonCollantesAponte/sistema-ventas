@@ -28,7 +28,7 @@ public class FrmGestionarPermiso extends javax.swing.JInternalFrame {
 
     public void cargarPermisos() {
         DetallePermiso detalle = detalleC.listar(idRol);
-        //el permiso 1 viaja aca y lo cagamos en permiso
+        //el permiso 1 viaja aca y lo cargamos en permiso
         for (Permiso permiso : detalle.getPermiso()) {
             switch (permiso.getPermisoId()) {
                 case 1:

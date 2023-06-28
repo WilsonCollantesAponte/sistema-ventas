@@ -8,6 +8,6 @@ package com.batteryworkshop.model;
  *
  * @author JuniorMiguel
  */
-public class DetallePedido {
+public class DetalleCompra {
     
 }

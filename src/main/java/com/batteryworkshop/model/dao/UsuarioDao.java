@@ -21,7 +21,7 @@ public class UsuarioDao implements CRUD {
     public List<Object> listar() {
 
         List lista = new ArrayList();
-        sql = "SELECT * FROM usuario ORDER BY usuarioID DESC";
+        sql = "SELECT * FROM usuario WHERE estado=1 ORDER BY usuarioID DESC";
 
         try {
 
@@ -153,7 +153,7 @@ public class UsuarioDao implements CRUD {
     @Override
     public void eliminar(Object obj) throws Exception {
 
-        sql = "delete from usuario where usuarioID = " + (int) obj;
+        sql = "DELETE FROM usuario where usuarioID ="+ (int) obj;
 
         try {
 
@@ -285,7 +285,7 @@ public class UsuarioDao implements CRUD {
 
     public Object iniciarSesion(String documento, String clave) {
 
-        sql = "select * from usuario where documento = '" + documento + "' and clave = '" + clave + "'";
+        sql = "select * from usuario where estado=1 AND documento = '" + documento + "' and clave = '" + clave + "'";
 
         try {
 

@@ -141,7 +141,7 @@ public class DetallePermisoDao {
 
     public void eliminarPermisos(int idRol) {
 
-        sql = "delete from detallepermiso where rolId = " + idRol;
+        sql = "delete from detallepermiso where rolID = " + idRol;
         try {
 
             con = estado.Conectar();

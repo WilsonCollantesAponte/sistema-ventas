@@ -6,10 +6,8 @@ package com.batteryworkshop.view;
 
 
 import com.batteryworkshop.model.dao.UsuarioDao;
-import com.batteryworkshop.model.Rol;
 import com.batteryworkshop.model.Usuario;
 import com.batteryworkshop.properties.RenderTable;
-import com.batteryworkshop.view.modal.FrmRegistrarRol;
 import com.batteryworkshop.view.modal.FrmRegistrarUsuario;
 import java.awt.Color;
 import java.awt.Image;

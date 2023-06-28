@@ -4,7 +4,6 @@
  */
 package com.batteryworkshop.view;
 
-import com.batteryworkshop.model.DetallePedido;
 import com.batteryworkshop.model.DetallePermiso;
 import com.batteryworkshop.model.Permiso;
 import com.batteryworkshop.model.Usuario;
@@ -74,9 +73,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 case "mnuAdmin":
                     mnuAdmin.setVisible(true);
                     break;
-                case "mnuCategoria":
-                    mnuCategoria.setVisible(true);
-                    break;
                 case "mnuCliente":
                     mnuCliente.setVisible(true);
                     break;
@@ -85,9 +81,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                     break;
                 case "mnuMantenimiento":
                     mnuMantenimiento.setVisible(true);
-                    break;
-                case "mnuProducto":
-                    mnuProducto.setVisible(true);
                     break;
                 case "mnuProveedor":
                     mnuProveedor.setVisible(true);

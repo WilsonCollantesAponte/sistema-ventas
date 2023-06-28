@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package com.batteryworkshop.view.modal;
-
 import com.batteryworkshop.model.dao.RolDao;
 import com.batteryworkshop.model.dao.UsuarioDao;
 import com.batteryworkshop.model.Rol;
@@ -12,7 +11,6 @@ import com.batteryworkshop.view.FrmGestionarUsuario;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author JuniorMiguel
@@ -35,11 +33,9 @@ public class FrmRegistrarUsuario extends javax.swing.JInternalFrame {
     }
 
     private void cargarRoles() {
-
         cmbRol.removeAllItems();
         List lista = rolC.listar();
         Rol rol;
-
         for (int i = 0; i < lista.size(); i++) {
             rol = (Rol) lista.get(i);
             cmbRol.addItem(rol.getDescripcion());
@@ -85,6 +81,7 @@ public class FrmRegistrarUsuario extends javax.swing.JInternalFrame {
         usuario.setCorreo(txtCorreo.getText().toUpperCase());
         usuario.setClave(txtClave.getText());
         usuario.setTelefono(txtTelefono.getText());
+        usuario.setEstado(true);
         usuario.setFechaNacimiento(java.sql.Date.valueOf(formato.format(txtFecha.getDate())));
         usuario.setRol((Rol) rolC.obtenerObjecto(cmbRol.getSelectedItem().toString()));
 

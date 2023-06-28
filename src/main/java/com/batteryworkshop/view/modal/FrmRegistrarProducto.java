@@ -28,11 +28,11 @@ public class FrmRegistrarProducto extends javax.swing.JInternalFrame {
      */
     public FrmRegistrarProducto() {
         initComponents();
-        cargarRoles();
+        cargar_categorias();
         acciones();
     }
 
-    private void cargarRoles() {
+    private void cargar_categorias() {
 
         cmbCategoria.removeAllItems();
         List lista = categoriaC.listar();
@@ -65,10 +65,9 @@ public class FrmRegistrarProducto extends javax.swing.JInternalFrame {
             txtNombre.setText(productoV.getNombre());
             txtDescripcion.setText(productoV.getDescripcion());
             cmbCategoria.setSelectedItem(productoV.getCategoria().getDescripcion());
-//            txtStock.setText(Integer.parseInt(productoV.getStock()));
-//            txtPrecioVenta.setText(Float.parseFloat(productoV.getPrecioCompra()));
-//            txtDescripcion.setText(productoV.getApellidos());
-//            txtFecha.setDate(productoV.getFechaNacimiento());       
+            txtStock.setText(String.valueOf(productoV.getStock()));
+            txtPrecioCompra.setText(String.valueOf(productoV.getPrecioCompra()));
+            txtPrecioVenta.setText(String.valueOf(productoV.getPrecioVenta()));
         }
 
     }
@@ -83,8 +82,6 @@ public class FrmRegistrarProducto extends javax.swing.JInternalFrame {
         producto.setStock(Integer.parseInt(txtPrecioVenta.getText()));
         producto.setPrecioCompra(Float.parseFloat(txtPrecioCompra.getText()));
         producto.setPrecioVenta(Float.parseFloat(txtPrecioVenta.getText()));
-        
-        
 
         if (cmdGrabar.getText().equalsIgnoreCase("Grabar")) {
             try {
